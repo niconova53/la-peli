@@ -12,5 +12,9 @@ _Estas son las herramientas utilizadas para crear el proyecto_
 * FORMIK
 * YUP
 
+## Despliegue 📦
+
+* FIREBASE
+
 ### Demo =) 
 https://la-peli.web.app/
