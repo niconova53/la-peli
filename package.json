@@ -1,0 +1,49 @@
+{
+  "name": "la-peli",
+  "version": "1.0.0",
+  "description": "Front End app movies",
+  "repository": "https://github.com/niconova53/la-peli.git",
+  "author": "Nico Novacovich",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "parcel src/index.html --out-dir build/debug",
+    "build": "parcel build src/index.html --out-dir build/release --public-url ./",
+    "lint": "eslint . --fix"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.35",
+    "@types/parcel-env": "^0.0.0",
+    "@types/react": "^17.0.3",
+    "@types/react-dom": "^17.0.3",
+    "@types/react-router-dom": "^5.1.7",
+    "@types/react-scroll": "^1.8.2",
+    "@typescript-eslint/eslint-plugin": "^4.19.0",
+    "@typescript-eslint/parser": "^4.19.0",
+    "eslint": "5.16.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-import": "2.22.1",
+    "eslint-plugin-jsx-a11y": "6.4.1",
+    "eslint-plugin-react": "7.21.5",
+    "eslint-plugin-react-hooks": "4",
+    "parcel-bundler": "^1.12.5",
+    "prettier": "^2.2.1",
+    "typescript": "^4.2.3"
+  },
+  "dependencies": {
+    "@tailwindui/react": "^0.1.1",
+    "autoprefixer": "^9.8.6",
+    "axios": "^0.21.1",
+    "components": "^0.1.0",
+    "formik": "^2.2.6",
+    "postcss": "^8.0.0",
+    "postcss-cli": "^8.1.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-router-dom": "^5.2.0",
+    "react-scroll": "^1.8.2",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",
+    "yup": "^0.32.9"
+  }
+}

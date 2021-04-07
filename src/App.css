@@ -1,0 +1,28 @@
+body::-webkit-scrollbar {
+  width: 12px;
+}
+
+body::-webkit-scrollbar-track {
+  background: #111827;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #a51e29;
+  border-radius: 20px;
+  border: 2px solid #111827;
+  height: 25%;
+}
+
+.overflow-y-auto::-webkit-scrollbar {
+  width: 5px;
+}
+
+.overflow-y-auto::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 2px grey;
+  border-radius: 10px;
+}
+
+.overflow-y-auto::-webkit-scrollbar-thumb {
+  background: rgba(128, 5, 5, 0.568);
+  border-radius: 10px;
+}
