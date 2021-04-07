@@ -19,5 +19,14 @@ Typescript
 Parcel
 Mira **Deployment** para conocer como desplegar el proyecto.
 
-## Demo =) 
+## Construido con 🛠️
+
+_Menciona las herramientas que utilizaste para crear tu proyecto_
+
+* REACT
+* TYPESCRIPT
+* [ROME](https://rometools.github.io/rome/) - Usado para generar RSS
+
+
+### Demo =) 
 https://la-peli.web.app/
