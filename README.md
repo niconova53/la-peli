@@ -1,13 +1,13 @@
 # La Peli web app
 
 Tecnologias usadas:
-_⚫ REACT
-_⚫ TYPESCRIPT
-_⚫ PARCEL
-_⚫ TAILWIND
-_⚫ AXIOS
-_⚫ FORMIK
-_⚫ YUP
+_⚫ REACT_
+_⚫ TYPESCRIPT_
+_⚫ PARCEL_
+_⚫ TAILWIND_
+_⚫ AXIOS_
+_⚫ FORMIK_
+_⚫ YUP_
 
-# Demo =) 
+## Demo =) 
 https://la-peli.web.app/
