@@ -1,6 +1,6 @@
 # La Peli web app
 
-Tecnologias usadas:
+_Tecnologias usadas:_
 _⚫ REACT_
 _⚫ TYPESCRIPT_
 _⚫ PARCEL_
