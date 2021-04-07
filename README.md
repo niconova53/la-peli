@@ -16,7 +16,7 @@ _Estas son las herramientas utilizadas para crear el proyecto_
 
 * FIREBASE
 
-### Demo 🚀 
+## Demo 🚀 
 https://la-peli.web.app/
 
 ## Autor ✒️
