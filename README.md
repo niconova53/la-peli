@@ -18,3 +18,7 @@ _Estas son las herramientas utilizadas para crear el proyecto_
 
 ### Demo 🚀 
 https://la-peli.web.app/
+
+## Autor ✒️
+
+* **Nico Novacovich** - *Developer* - [LINKEDIN](https://www.linkedin.com/in/nicolas-novacovich-002211173/)
