@@ -1,0 +1,2 @@
+body::-webkit-scrollbar{width:12px}body::-webkit-scrollbar-track{background:#f7f5ff}body::-webkit-scrollbar-thumb{background-color:#7c3aed;border-radius:20px;border:2px solid #f7f5ff;height:25%}.overflow-y-auto::-webkit-scrollbar{width:5px}.overflow-y-auto::-webkit-scrollbar-track{box-shadow:inset 0 0 2px grey;border-radius:10px}.overflow-y-auto::-webkit-scrollbar-thumb{background:rgba(124,58,237,.6);border-radius:10px}
+/*# sourceMappingURL=src.71cee0d2.css.map */
