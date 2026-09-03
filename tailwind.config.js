@@ -22,21 +22,34 @@ module.exports = {
         ],
       },
       colors: {
+        // Cinema Mode — exact tokens from Stitch "Inicio Modo Cine"
         primary: "#8b5cf6",
         "primary-dim": "#7c3aed",
-        secondary: "#e2e8f0",
-        tertiary: "#f43f5e",
-        // cinema dark surfaces
+        "primary-container": "#a78bfa",
+        "primary-fixed": "#ae8dff",
+        secondary: "#94a3b8",
+        tertiary: "#ff6f7e",
+        "tertiary-container": "#fc4563",
+        // surfaces
+        background: "#0f172a",
         surface: "#0f172a",
-        "surface-dim": "#0b1120",
-        "surface-bright": "#1e293b",
+        "surface-dim": "#060e20",
+        "surface-bright": "#1f2b49",
         "surface-container": "#1e293b",
-        "surface-container-low": "#16213a",
-        "surface-container-lowest": "#0b1120",
+        "surface-container-low": "#091328",
+        "surface-container-lowest": "#000000",
+        "surface-container-high": "#141f38",
+        "surface-container-highest": "#192540",
+        "surface-variant": "#1e293b",
+        // text
         "on-surface": "#e2e8f0",
-        "on-surface-variant": "#94a3b8",
+        "on-surface-variant": "#cbd5e1",
+        "on-background": "#e2e8f0",
+        "on-primary": "#ffffff",
+        "on-secondary": "#4c5259",
+        // borders/outlines
         outline: "#334155",
-        "outline-variant": "#1e293b",
+        "outline-variant": "#40485d",
         // legacy aliases (kept for compatibility)
         "deep-navy": "#0f172a",
         "brand-dark": "#0f172a",

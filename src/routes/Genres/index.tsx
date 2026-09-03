@@ -14,7 +14,6 @@ const Genres: FC<IGenresOwnProps> = () => {
     const handleGenres = async () => {
       try {
         const res = await getGenres();
-
         setGenres(res);
       } catch (err) {
         console.log(err);
@@ -34,14 +33,20 @@ const Genres: FC<IGenresOwnProps> = () => {
   };
 
   return (
-    <>
+    <main className="flex-grow w-full max-w-7xl mx-auto px-6 py-8 flex flex-col gap-6">
+      <div className="flex justify-between items-end border-b border-outline/30 pb-2">
+        <h1 className="font-headline text-3xl md:text-4xl font-extrabold text-white tracking-tight">
+          Explora por Género
+        </h1>
+      </div>
+
       {genres.length === 0 && (
         <p className="text-center text-xl font-sans my-4 text-on-surface-variant break-words whitespace-pre-wrap">
           Cargando...
         </p>
       )}
 
-      <div className="max-w-screen-xl mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 px-5 sm:px-10 md:px-20 lg:px-40 xl:px-10 gap-8 my-8">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
         {genres.length > 0 &&
           genres.map((e: any) => {
             return (
@@ -50,12 +55,12 @@ const Genres: FC<IGenresOwnProps> = () => {
                 onClick={() => {
                   openGenre(e.id, e.name);
                 }}
-                className="group flex flex-col bg-surface-container-lowest border border-outline-variant rounded-lg shadow-card-soft cursor-pointer hover:shadow-glow-violet transition-shadow"
+                className="group flex flex-col bg-surface-container border border-outline/20 rounded-xl shadow-card-soft cursor-pointer hover:-translate-y-2 transition-transform duration-300"
               >
-                <div className="w-full flex flex-col justify-around text-center">
-                  <MovieIcon className="w-12 h-12 mt-4 fill-current text-surface-container group-hover:text-primary mx-auto" />
+                <div className="w-full flex flex-col justify-around text-center py-6">
+                  <MovieIcon className="w-12 h-12 fill-current text-on-surface-variant group-hover:text-primary mx-auto transition-colors" />
                   <div>
-                    <h3 className="font-headline font-semibold my-4 text-secondary break-words whitespace-pre-wrap">
+                    <h3 className="font-headline font-semibold my-4 text-white break-words whitespace-pre-wrap">
                       {e.name}
                     </h3>
                   </div>
@@ -64,7 +69,7 @@ const Genres: FC<IGenresOwnProps> = () => {
             );
           })}
       </div>
-    </>
+    </main>
   );
 };
 
