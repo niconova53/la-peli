@@ -49,10 +49,14 @@ const CurrentMovies: FC<ICurrentMoviesOwnProps> = () => {
           className="relative w-full rounded-xl overflow-hidden shadow-2xl h-[400px] md:h-[500px] group cursor-pointer border border-outline/30"
         >
           <div
-            className="absolute inset-0 bg-cover bg-center w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out"
-            style={{
-              backgroundImage: `url(${API_IMG_URL}original${featured.backdrop_path})`,
-            }}
+            className="absolute inset-0 bg-cover bg-center w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out bg-surface-container"
+            style={
+              featured.backdrop_path
+                ? {
+                    backgroundImage: `url(${API_IMG_URL}original${featured.backdrop_path})`,
+                  }
+                : {}
+            }
           />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
           <div className="absolute bottom-0 left-0 p-6 md:p-8 w-full md:w-2/3 flex flex-col gap-2">
