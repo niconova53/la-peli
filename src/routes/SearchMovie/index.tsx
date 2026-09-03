@@ -17,11 +17,11 @@ const SearchMovie: FC<ISearchMovieOwnProps> = () => {
 
   return (
     <>
-      <h2 className="font-bold text-center text-3xl font-montserrat my-4 text-gray-400 break-words whitespace-pre-wrap">
+      <h2 className="font-semibold text-center text-3xl font-sans my-4 text-deep-navy break-words whitespace-pre-wrap">
         Buscar Peli
       </h2>
 
-      <p className="font-semibold text-center text-xl font-montserrat my-4 text-gray-400 break-words whitespace-pre-wrap">
+      <p className="text-center text-xl font-sans my-4 text-gray-500 break-words whitespace-pre-wrap">
         resultados de:
         <span className="text-gray-200 ml-3 italic">{movieSearch}</span>
       </p>
@@ -33,7 +33,7 @@ const SearchMovie: FC<ISearchMovieOwnProps> = () => {
       />
 
       {errorSearch && (
-        <p className="font-semibold text-center text-xl font-montserrat my-4 text-gray-400 break-words whitespace-pre-wrap">
+        <p className="text-center text-xl font-sans my-4 text-gray-500 break-words whitespace-pre-wrap">
           No hay resultados
         </p>
       )}

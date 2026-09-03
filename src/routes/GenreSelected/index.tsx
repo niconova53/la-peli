@@ -35,12 +35,12 @@ const GenreSelected: FC<IGenreSelectedOwnProps> = () => {
 
   return (
     <>
-      <h2 className="font-bold text-center text-3xl font-montserrat my-4 text-gray-400 break-words whitespace-pre-wrap">
+      <h2 className="font-semibold text-center text-3xl font-sans my-4 text-deep-navy break-words whitespace-pre-wrap">
         {name} pelis
       </h2>
 
       {movies.length === 0 && (
-        <p className="font-semibold text-center text-xl font-montserrat my-4 text-gray-400 break-words whitespace-pre-wrap">
+        <p className="text-center text-xl font-sans my-4 text-gray-500 break-words whitespace-pre-wrap">
           Cargando...
         </p>
       )}

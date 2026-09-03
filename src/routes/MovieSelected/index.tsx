@@ -33,17 +33,17 @@ const MovieSelected: FC<IMovieSelectedOwnProps> = () => {
 
   const bgStyle = {
     backgroundImage:
-      "url(" + API_IMG_URL + "t/p/original" + movie.backdrop_path + ")",
+      "url(" + API_IMG_URL + "original" + movie.backdrop_path + ")",
   };
 
   return (
-    <div className="mx-6 bg-gray-800 opacity-80 rounded-xl mt-4 mb-8">
+    <div className="mx-6 bg-white border border-grayBorder rounded-xl mt-4 mb-8 shadow-stripe-standard">
       <div
         style={movie.backdrop_path ? bgStyle : {}}
         className="relative font-raleway text-white rounded-xl flex flex-col justify-start w-full min-h-screen bg-cover bg-center bg-opacity-70 overflow-hidden"
       >
         <div
-          className={`w-full h-full bg-gray-900 bg-opacity-80 absolute ${
+          className={`w-full h-full bg-deep-navy bg-opacity-80 absolute ${
             movie.backdrop_path && "animate-pulse-10"
           }`}
         />

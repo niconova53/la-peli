@@ -12,7 +12,7 @@ const Header: FC<IHeaderOwnProps> = () => {
     <header>
       <nav className="w-full bg-transparent p-6">
         <div className="flex justify-between items-center">
-          <div className="text-red-500 font-montserrat font-bold text-3xl md:text-4xl">
+          <div className="text-primary font-sans font-bold text-3xl md:text-4xl tracking-tight">
             La Peli
           </div>
 
@@ -54,8 +54,8 @@ const Header: FC<IHeaderOwnProps> = () => {
                     key={`header-nav-item-${item.href}`}
                     to={item.href}
                     replace
-                    activeClassName="text-green-600"
-                    className="text-gray-300 font-raleway font-bold hover:text-green-600 px-3 pt-2 rounded-md text-base lg:text-xl flex justify-center"
+                    activeClassName="text-primary font-semibold"
+                    className="text-deep-navy font-sans hover:text-primary px-3 pt-2 rounded-md text-base lg:text-xl flex justify-center"
                   >
                     {item.title}
                   </NavLink>

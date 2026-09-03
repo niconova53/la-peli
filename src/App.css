@@ -3,13 +3,13 @@ body::-webkit-scrollbar {
 }
 
 body::-webkit-scrollbar-track {
-  background: #111827;
+  background: #f5f7fa;
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: #a51e29;
+  background-color: #533afd;
   border-radius: 20px;
-  border: 2px solid #111827;
+  border: 2px solid #f5f7fa;
   height: 25%;
 }
 
@@ -23,6 +23,6 @@ body::-webkit-scrollbar-thumb {
 }
 
 .overflow-y-auto::-webkit-scrollbar-thumb {
-  background: rgba(128, 5, 5, 0.568);
+  background: rgba(83, 58, 253, 0.6);
   border-radius: 10px;
 }

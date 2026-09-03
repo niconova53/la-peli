@@ -23,8 +23,8 @@ const FormikInput: FC<IFormikInputOwnProps> = ({
 
   const borderError =
     meta.touched && meta.error
-      ? "focus:outline-none border-red-400 focus:border-red-400"
-      : "focus:outline-none focus:border-green-300";
+      ? "focus:outline-none border-ruby focus:border-ruby"
+      : "focus:outline-none focus:border-primary";
 
   return (
     <>

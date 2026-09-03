@@ -1,7 +1,6 @@
 module.exports = {
   env: {
     browser: true,
-    // es2021: true,
     node: true,
   },
   extends: [
@@ -21,6 +20,13 @@ module.exports = {
     sourceType: "module",
   },
   plugins: ["react", "@typescript-eslint"],
+  settings: {
+    "import/resolver": {
+      node: {
+        extensions: [".js", ".jsx", ".ts", ".tsx"],
+      },
+    },
+  },
   rules: {
     "import/extensions": [
       "error",
@@ -36,5 +42,6 @@ module.exports = {
     "jsx-a11y/no-static-element-interactions": "off",
     "import/no-useless-path-segments": "off",
     "import/no-cycle": "off",
+    "import/no-unresolved": "off",
   },
 };

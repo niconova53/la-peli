@@ -15,19 +15,19 @@ const Card: FC<IcardOwnProps> = ({
       onClick={() => {
         openMovie(movieId);
       }}
-      className="group flex flex-col sm:flex-row py-4 pr-2 sm:pr-0 pl-2 lg:py-6 lg:pl-4 bg-gray-800 opacity-75 rounded cursor-pointer hover:opacity-95"
+      className="group flex flex-col sm:flex-row py-4 pr-2 sm:pr-0 pl-2 lg:py-6 lg:pl-4 bg-white border border-grayBorder rounded shadow-stripe-standard cursor-pointer hover:shadow-sm transition-shadow"
     >
       <div className="flex justify-center sm:justify-end sm:min-w-max rounded-lg overflow-hidden">
         {poster ? (
           <img
-            src={`${API_IMG_URL}t/p/w300${poster}`}
+            src={`${API_IMG_URL}w300${poster}`}
             alt="movie poster"
             className="transition ease-out duration-700 transform group-hover:scale-125 group-hover:-translate-y-12"
           />
         ) : null}
       </div>
 
-      <div className="w-full flex flex-col justify-between font-raleway text-white text-center truncate">
+      <div className="w-full flex flex-col justify-between font-sans text-deep-navy text-center truncate">
         <div>
           <h2 className="text-2xl font-medium mb-4 break-words whitespace-pre-wrap">
             {title}

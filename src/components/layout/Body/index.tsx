@@ -29,13 +29,13 @@ const Body: FC<IBodyOwnProps> = ({ children }) => {
   };
 
   return (
-    <div className="relative overflow-x-hidden w-full min-h-screen bg-gray-900 pb-20">
+    <div className="relative overflow-x-hidden w-full min-h-screen bg-white pb-20">
       {children}
 
       <button
         className={`${
           showScroll ? "flex" : "hidden"
-        } fixed bottom-16 right-4 text-xl overflow-hidden bg-red-600 bg-opacity-80 rounded-full w-28 h-12 items-center hover:bg-opacity-60 focus:outline-none active:bg-red-700`}
+        } fixed bottom-16 right-4 text-xl overflow-hidden bg-primary rounded-md w-28 h-12 items-center hover:opacity-90 focus:outline-none shadow-stripe-standard`}
         type="button"
         onClick={(e) => {
           e.preventDefault();

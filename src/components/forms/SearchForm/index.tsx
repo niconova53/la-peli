@@ -43,7 +43,7 @@ const SearchForm: FC<ISearchFormOwnProps> = ({
               name="movieQuery"
               type="text"
               ErrorMsg
-              inputStyle="w-full px-4 py-2 border-2 border-gray-300 text-gray-900 rounded-sm focus:outline-none sm:text-sm"
+              inputStyle="w-full px-4 py-2 border-2 border-grayBorder text-deep-navy rounded-sm focus:outline-none sm:text-sm"
               labelStyle="absolute top-0 pt-1 pl-4 italic font-medium text-gray-700 -z-1 duration-300"
             />
           </div>

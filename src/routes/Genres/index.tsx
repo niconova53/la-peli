@@ -36,7 +36,7 @@ const Genres: FC<IGenresOwnProps> = () => {
   return (
     <>
       {genres.length === 0 && (
-        <p className="font-semibold text-center text-xl font-montserrat my-4 text-gray-400 break-words whitespace-pre-wrap">
+        <p className="text-center text-xl font-sans my-4 text-gray-500 break-words whitespace-pre-wrap">
           Cargando...
         </p>
       )}
@@ -50,12 +50,12 @@ const Genres: FC<IGenresOwnProps> = () => {
                 onClick={() => {
                   openGenre(e.id, e.name);
                 }}
-                className="group flex flex-col bg-gray-800 opacity-75 rounded cursor-pointer hover:opacity-95"
+                className="group flex flex-col bg-white border border-grayBorder rounded shadow-stripe-standard cursor-pointer hover:shadow-sm transition-shadow"
               >
                 <div className="w-full flex flex-col justify-around text-center">
-                  <MovieIcon className="w-12 h-12 mt-4 fill-current text-gray-500 group-hover:text-red-600 mx-auto" />
+                  <MovieIcon className="w-12 h-12 mt-4 fill-current text-gray-400 group-hover:text-primary mx-auto" />
                   <div>
-                    <h3 className="font-bold font-montserrat my-4 text-gray-200 break-words whitespace-pre-wrap">
+                    <h3 className="font-semibold font-sans my-4 text-deep-navy break-words whitespace-pre-wrap">
                       {e.name}
                     </h3>
                   </div>
