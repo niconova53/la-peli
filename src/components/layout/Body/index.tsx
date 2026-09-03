@@ -29,20 +29,20 @@ const Body: FC<IBodyOwnProps> = ({ children }) => {
   };
 
   return (
-    <div className="relative overflow-x-hidden w-full min-h-screen bg-white pb-20">
+    <div className="relative overflow-x-hidden w-full min-h-screen bg-surface pb-20">
       {children}
 
       <button
         className={`${
           showScroll ? "flex" : "hidden"
-        } fixed bottom-16 right-4 text-xl overflow-hidden bg-primary rounded-md w-28 h-12 items-center hover:opacity-90 focus:outline-none shadow-stripe-standard`}
+        } fixed bottom-16 right-4 text-xl overflow-hidden bg-primary rounded-lg w-28 h-12 items-center hover:bg-primary-dim focus:outline-none shadow-card-soft`}
         type="button"
         onClick={(e) => {
           e.preventDefault();
           scrollTop();
         }}
       >
-        <p className="text-center w-full font-montserrat font-semibold text-gray-200">
+        <p className="text-center w-full font-headline font-semibold text-white">
           Subir ↑
         </p>
       </button>

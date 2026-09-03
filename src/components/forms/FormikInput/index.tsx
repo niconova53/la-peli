@@ -16,14 +16,14 @@ const FormikInput: FC<IFormikInputOwnProps> = ({
   const [field, meta] = useField(props);
   const textError =
     meta.touched && meta.error ? (
-      <div className="text-red-500 font-medium text-sm lg:text-base text-shadow-white absolute -bottom-6 lg:-bottom-7 left-0 w-full truncate">
+      <div className="text-tertiary font-medium text-sm lg:text-base text-shadow-white absolute -bottom-6 lg:-bottom-7 left-0 w-full truncate">
         {meta.error}
       </div>
     ) : null;
 
   const borderError =
     meta.touched && meta.error
-      ? "focus:outline-none border-ruby focus:border-ruby"
+      ? "focus:outline-none border-tertiary focus:border-tertiary"
       : "focus:outline-none focus:border-primary";
 
   return (

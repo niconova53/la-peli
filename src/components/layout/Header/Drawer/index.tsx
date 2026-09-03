@@ -24,7 +24,7 @@ const DrawerResponsive: FC<IDrawerOwnProps> = ({
         leaveFrom="opacity-100 scale-100"
         leaveTo="opacity-0 scale-95"
       >
-        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 mt-2 bg-white rounded-md shadow-stripe-standard ring-1 ring-grayBorder">
+        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 mt-2 bg-surface-container-lowest rounded-lg shadow-card-soft ring-1 ring-outline-variant">
           {headerItems.map((item: DrawerItem) => {
             return (
               <NavLink
@@ -33,7 +33,7 @@ const DrawerResponsive: FC<IDrawerOwnProps> = ({
                 to={item.href}
                 replace
                 activeClassName="text-primary font-semibold"
-                className="text-deep-navy hover:bg-primary hover:text-white truncate px-3 py-2 rounded-md text-base font-medium flex"
+                className="text-secondary hover:bg-primary hover:text-white truncate px-3 py-2 rounded-lg text-base font-medium flex transition-colors"
               >
                 {item.title}
               </NavLink>

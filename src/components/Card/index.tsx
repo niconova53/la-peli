@@ -15,7 +15,7 @@ const Card: FC<IcardOwnProps> = ({
       onClick={() => {
         openMovie(movieId);
       }}
-      className="group flex flex-col sm:flex-row py-4 pr-2 sm:pr-0 pl-2 lg:py-6 lg:pl-4 bg-white border border-grayBorder rounded shadow-stripe-standard cursor-pointer hover:shadow-sm transition-shadow"
+      className="group flex flex-col sm:flex-row py-4 pr-2 sm:pr-0 pl-2 lg:py-6 lg:pl-4 bg-surface-container-lowest border border-outline-variant rounded-lg shadow-card-soft cursor-pointer hover:shadow-glow-violet transition-shadow"
     >
       <div className="flex justify-center sm:justify-end sm:min-w-max rounded-lg overflow-hidden">
         {poster ? (
@@ -27,9 +27,9 @@ const Card: FC<IcardOwnProps> = ({
         ) : null}
       </div>
 
-      <div className="w-full flex flex-col justify-between font-sans text-deep-navy text-center truncate">
+      <div className="w-full flex flex-col justify-between font-sans text-secondary text-center truncate">
         <div>
-          <h2 className="text-2xl font-medium mb-4 break-words whitespace-pre-wrap">
+          <h2 className="text-2xl font-headline font-bold mb-4 break-words whitespace-pre-wrap">
             {title}
           </h2>
           <p className="px-4 md:px-8 mb-2 break-words whitespace-pre-wrap">

@@ -35,7 +35,7 @@ const GenreSelected: FC<IGenreSelectedOwnProps> = () => {
 
   return (
     <>
-      <h2 className="font-semibold text-center text-3xl font-sans my-4 text-deep-navy break-words whitespace-pre-wrap">
+      <h2 className="font-semibold text-center text-3xl font-sans my-4 text-secondary break-words whitespace-pre-wrap">
         {name} pelis
       </h2>
 

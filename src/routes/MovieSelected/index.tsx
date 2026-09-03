@@ -37,19 +37,19 @@ const MovieSelected: FC<IMovieSelectedOwnProps> = () => {
   };
 
   return (
-    <div className="mx-6 bg-white border border-grayBorder rounded-xl mt-4 mb-8 shadow-stripe-standard">
+    <div className="mx-6 bg-surface-container-lowest border border-outline-variant rounded-lg mt-4 mb-8 shadow-card-soft">
       <div
         style={movie.backdrop_path ? bgStyle : {}}
-        className="relative font-raleway text-white rounded-xl flex flex-col justify-start w-full min-h-screen bg-cover bg-center bg-opacity-70 overflow-hidden"
+        className="relative font-sans text-white rounded-lg flex flex-col justify-start w-full min-h-screen bg-cover bg-center bg-opacity-70 overflow-hidden"
       >
         <div
-          className={`w-full h-full bg-deep-navy bg-opacity-80 absolute ${
+          className={`w-full h-full bg-secondary bg-opacity-80 absolute ${
             movie.backdrop_path && "animate-pulse-10"
           }`}
         />
 
         <div className="flex flex-col w-full h-full z-10 p-10">
-          <h2 className="mb-4 text-3xl font-semibold">{movie.title}</h2>
+          <h2 className="mb-4 text-4xl font-headline font-extrabold tracking-tight">{movie.title}</h2>
 
           <p className="mb-4 break-words whitespace-pre-wrap ">
             <strong className="mr-2">Sinopsis: </strong>

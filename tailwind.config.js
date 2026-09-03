@@ -7,6 +7,7 @@ module.exports = {
         montserrat: ["Montserrat"],
         raleway: ["Raleway"],
         major: ["Major Mono Display"],
+        headline: ["Plus Jakarta Sans", "system-ui", "sans-serif"],
         sans: ["Source Sans 3", "system-ui", "sans-serif"],
         mono: [
           "Source Code Pro",
@@ -21,19 +22,33 @@ module.exports = {
         ],
       },
       colors: {
-        primary: "#533afd",
-        "deep-navy": "#061b31",
-        "brand-dark": "#1c1e54",
-        "shadow-blue": "rgba(50,50,93,0.25)",
-        "shadow-black": "rgba(0,0,0,0.1)",
+        primary: "#7c3aed",
+        "primary-dim": "#6d28d9",
+        secondary: "#0f172a",
+        tertiary: "#f43f5e",
+        // lavender-tinted surfaces
+        surface: "#f7f5ff",
+        "surface-dim": "#d4d3e4",
+        "surface-bright": "#f7f5ff",
+        "surface-container": "#e8e7f5",
+        "surface-container-low": "#f1effc",
+        "surface-container-lowest": "#ffffff",
+        "on-surface": "#2d2e37",
+        "on-surface-variant": "#5b5b64",
+        outline: "#767680",
+        "outline-variant": "#adacb7",
+        // legacy aliases (kept for compatibility)
+        "deep-navy": "#0f172a",
+        "brand-dark": "#0f172a",
         success: "#15be53",
-        ruby: "#ea2261",
-        magenta: "#f96bee",
+        ruby: "#f43f5e",
+        magenta: "#f43f5e",
         grayBorder: "#e5edf5",
       },
       boxShadow: {
-        "stripe-standard":
-          "0 30px 45px -30px var(--shadow-blue), 0 18px 36px -18px var(--shadow-black)",
+        "card-soft":
+          "0 1px 3px rgba(16,24,40,0.06), 0 8px 24px -12px rgba(124,58,237,0.18)",
+        "glow-violet": "0 0 0 3px rgba(124,58,237,0.15)",
       },
       zIndex: {
         "-1": "-1",

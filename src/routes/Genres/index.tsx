@@ -50,12 +50,12 @@ const Genres: FC<IGenresOwnProps> = () => {
                 onClick={() => {
                   openGenre(e.id, e.name);
                 }}
-                className="group flex flex-col bg-white border border-grayBorder rounded shadow-stripe-standard cursor-pointer hover:shadow-sm transition-shadow"
+                className="group flex flex-col bg-surface-container-lowest border border-outline-variant rounded-lg shadow-card-soft cursor-pointer hover:shadow-glow-violet transition-shadow"
               >
                 <div className="w-full flex flex-col justify-around text-center">
-                  <MovieIcon className="w-12 h-12 mt-4 fill-current text-gray-400 group-hover:text-primary mx-auto" />
+                  <MovieIcon className="w-12 h-12 mt-4 fill-current text-surface-container group-hover:text-primary mx-auto" />
                   <div>
-                    <h3 className="font-semibold font-sans my-4 text-deep-navy break-words whitespace-pre-wrap">
+                    <h3 className="font-headline font-semibold my-4 text-secondary break-words whitespace-pre-wrap">
                       {e.name}
                     </h3>
                   </div>

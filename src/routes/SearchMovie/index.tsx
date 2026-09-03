@@ -17,7 +17,7 @@ const SearchMovie: FC<ISearchMovieOwnProps> = () => {
 
   return (
     <>
-      <h2 className="font-semibold text-center text-3xl font-sans my-4 text-deep-navy break-words whitespace-pre-wrap">
+      <h2 className="font-semibold text-center text-3xl font-sans my-4 text-secondary break-words whitespace-pre-wrap">
         Buscar Peli
       </h2>
 
