@@ -43,7 +43,7 @@ const MovieSelected: FC<IMovieSelectedOwnProps> = () => {
         className="relative font-sans text-white rounded-lg flex flex-col justify-start w-full min-h-screen bg-cover bg-center bg-opacity-70 overflow-hidden"
       >
         <div
-          className={`w-full h-full bg-secondary bg-opacity-80 absolute ${
+          className={`w-full h-full bg-surface bg-opacity-80 absolute ${
             movie.backdrop_path && "animate-pulse-10"
           }`}
         />

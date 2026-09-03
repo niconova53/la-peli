@@ -1,24 +1,25 @@
-# La Peli web app
+# La Peli 🎬
+
+Aplicación web para descubrir películas en cartelera, próximos estrenos y búsqueda por género o título. Datos en vivo desde [The Movie Database (TMDB)](https://www.themoviedb.org/).
 
 ## Construido con 🛠️
 
-_Estas son las herramientas utilizadas para crear el proyecto_
-
-* REACT
-* TYPESCRIPT
-* PARCEL
-* TAILWIND
-* AXIOS
-* FORMIK
-* YUP
+* React
+* TypeScript
+* Parcel
+* Tailwind CSS
+* Axios
+* Formik
+* Yup
 
 ## Despliegue 📦
 
-* FIREBASE
+* GitHub Pages
 
-## Demo 🚀 
-https://la-peli.web.app/
+## Demo 🚀
+
+https://niconova53.github.io/la-peli/
 
 ## Autor ✒️
 
-* **Nico Novacovich** - *Developer* - [LINKEDIN](https://www.linkedin.com/in/nicolas-novacovich-002211173/)
+* **Nicolas Novacovich** — *Developer* — [LinkedIn](https://www.linkedin.com/in/nicolas-novacovich-002211173/)

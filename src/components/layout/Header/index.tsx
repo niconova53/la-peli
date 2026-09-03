@@ -19,7 +19,7 @@ const Header: FC<IHeaderOwnProps> = () => {
           <div className="md:hidden">
             <button
               type="button"
-              className="relative w-10 h-10 text-gray-500 bg-white rounded-sm focus:outline-none"
+              className="relative w-10 h-10 text-on-surface bg-surface-bright rounded-lg focus:outline-none"
               onClick={() => setShow(!show)}
             >
               <span className="sr-only">Open main menu</span>

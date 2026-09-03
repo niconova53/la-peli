@@ -21,9 +21,9 @@ const SearchMovie: FC<ISearchMovieOwnProps> = () => {
         Buscar Peli
       </h2>
 
-      <p className="text-center text-xl font-sans my-4 text-gray-500 break-words whitespace-pre-wrap">
+      <p className="text-center text-xl font-sans my-4 text-on-surface-variant break-words whitespace-pre-wrap">
         resultados de:
-        <span className="text-gray-200 ml-3 italic">{movieSearch}</span>
+        <span className="text-on-surface ml-3 italic">{movieSearch}</span>
       </p>
 
       <SearchForm
@@ -33,7 +33,7 @@ const SearchMovie: FC<ISearchMovieOwnProps> = () => {
       />
 
       {errorSearch && (
-        <p className="text-center text-xl font-sans my-4 text-gray-500 break-words whitespace-pre-wrap">
+        <p className="text-center text-xl font-sans my-4 text-on-surface-variant break-words whitespace-pre-wrap">
           No hay resultados
         </p>
       )}

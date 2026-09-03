@@ -40,7 +40,7 @@ const GenreSelected: FC<IGenreSelectedOwnProps> = () => {
       </h2>
 
       {movies.length === 0 && (
-        <p className="text-center text-xl font-sans my-4 text-gray-500 break-words whitespace-pre-wrap">
+        <p className="text-center text-xl font-sans my-4 text-on-surface-variant break-words whitespace-pre-wrap">
           Cargando...
         </p>
       )}
