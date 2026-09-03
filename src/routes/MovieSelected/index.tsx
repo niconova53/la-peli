@@ -7,7 +7,7 @@ import { API_IMG_URL } from "../../constants";
 
 const MovieSelected: FC<IMovieSelectedOwnProps> = () => {
   const [movie, setMovie] = useState<MovieValues>({});
-  const [reviews, setReviews] = useState([]);
+  const [reviews, setReviews] = useState<any[]>([]);
 
   const { id } = useParams<{ id: string }>();
 
@@ -29,69 +29,114 @@ const MovieSelected: FC<IMovieSelectedOwnProps> = () => {
       getMovieById("0", true);
       getMovieReviews("0", true);
     };
-  }, []);
+  }, [id]);
 
-  const bgStyle = {
-    backgroundImage:
-      "url(" + API_IMG_URL + "original" + movie.backdrop_path + ")",
-  };
+  const year = movie.release_date
+    ? movie.release_date.slice(0, 4)
+    : "—";
 
   return (
-    <div className="mx-6 bg-surface-container-lowest border border-outline-variant rounded-lg mt-4 mb-8 shadow-card-soft">
-      <div
-        style={movie.backdrop_path ? bgStyle : {}}
-        className="relative font-sans text-white rounded-lg flex flex-col justify-start w-full min-h-screen bg-cover bg-center bg-opacity-70 overflow-hidden"
-      >
+    <main className="flex-grow w-full flex flex-col">
+      {/* Hero */}
+      <section className="relative w-full h-[60vh] md:h-[70vh] overflow-hidden">
         <div
-          className={`w-full h-full bg-surface bg-opacity-80 absolute ${
-            movie.backdrop_path && "animate-pulse-10"
-          }`}
+          className="absolute inset-0 bg-cover bg-center w-full h-full bg-surface-container"
+          style={
+            movie.backdrop_path
+              ? {
+                  backgroundImage: `url(${API_IMG_URL}original${movie.backdrop_path})`,
+                }
+              : {}
+          }
         />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-background/20" />
 
-        <div className="flex flex-col w-full h-full z-10 p-10">
-          <h2 className="mb-4 text-4xl font-headline font-extrabold tracking-tight">{movie.title}</h2>
-
-          <p className="mb-4 break-words whitespace-pre-wrap ">
-            <strong className="mr-2">Sinopsis: </strong>
-            {movie.overview ? movie.overview : "Cargando..."}
+        <div className="absolute bottom-0 left-0 p-6 md:p-12 w-full md:w-2/3 flex flex-col gap-3">
+          <span className="bg-primary/20 text-primary-fixed px-3 py-1 rounded-full text-sm font-headline w-max border border-primary/30 backdrop-blur-sm">
+            Estreno de la Semana
+          </span>
+          <h1 className="font-headline text-4xl md:text-6xl text-white font-extrabold tracking-tight">
+            {movie.title || "Cargando..."}
+          </h1>
+          <p className="font-sans text-base md:text-lg text-on-surface-variant line-clamp-3 md:line-clamp-4 max-w-2xl">
+            {movie.overview || "Cargando..."}
           </p>
-
-          <p className="mb-4 break-words whitespace-pre-wrap">
-            <strong className="mr-2">Año: </strong>
-            {movie.release_date ? movie.release_date : "Cargando..."}
-          </p>
-
-          <p className="mb-4 break-words whitespace-pre-wrap">
-            <strong className="mr-2">Rating: </strong>
-            {movie.vote_average ? movie.vote_average : "Cargando..."}
-          </p>
-
-          <p className="mb-4 break-words whitespace-pre-wrap">
-            <strong className="mr-2">Reviews: </strong>
-            {reviews && reviews.length}
-          </p>
-
-          {reviews.length > 0 && (
-            <div
-              id="rev"
-              className="max-h-96 overflow-y-auto overflow-x-hidden"
-            >
-              {reviews.map((e: any) => {
-                return (
-                  <div key={e.id} className="mb-4 mt-2">
-                    <h3 className="my-2">
-                      <span className="font-semibold">Autor : </span>
-                      {e.author}
-                    </h3>
-                    <p className="mr-2 mb-8">{e.content}</p>
-                  </div>
-                );
-              })}
-            </div>
-          )}
         </div>
-      </div>
-    </div>
+      </section>
+
+      {/* Info strip */}
+      <section className="w-full max-w-7xl mx-auto px-6 py-6 grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="bg-surface-container rounded-xl p-4 border border-outline/20 flex flex-col gap-1">
+          <span className="font-sans text-xs text-on-surface-variant uppercase tracking-wide">
+            Año
+          </span>
+          <span className="font-headline text-xl text-on-surface font-bold">
+            {year}
+          </span>
+        </div>
+        <div className="bg-surface-container rounded-xl p-4 border border-outline/20 flex flex-col gap-1">
+          <span className="font-sans text-xs text-on-surface-variant uppercase tracking-wide">
+            Rating
+          </span>
+          <span className="font-headline text-xl text-on-surface font-bold flex items-center gap-2">
+            <span className="text-tertiary">★</span>
+            {movie.vote_average ? movie.vote_average : "—"}
+          </span>
+        </div>
+        <div className="bg-surface-container rounded-xl p-4 border border-outline/20 flex flex-col gap-1">
+          <span className="font-sans text-xs text-on-surface-variant uppercase tracking-wide">
+            Reseñas
+          </span>
+          <span className="font-headline text-xl text-on-surface font-bold">
+            {reviews ? reviews.length : 0}
+          </span>
+        </div>
+        <div className="bg-surface-container rounded-xl p-4 border border-outline/20 flex flex-col gap-1">
+          <span className="font-sans text-xs text-on-surface-variant uppercase tracking-wide">
+            Idioma
+          </span>
+          <span className="font-headline text-xl text-on-surface font-bold">
+            {movie.original_language
+              ? movie.original_language.toUpperCase()
+              : "—"}
+          </span>
+        </div>
+      </section>
+
+      {/* Reviews */}
+      <section className="w-full max-w-7xl mx-auto px-6 pb-12 flex flex-col gap-4">
+        <div className="flex justify-between items-end border-b border-outline/30 pb-2">
+          <h2 className="font-headline text-2xl md:text-3xl font-extrabold text-white tracking-tight">
+            Reseñas de Usuarios
+          </h2>
+        </div>
+
+        {reviews.length === 0 && (
+          <p className="font-sans text-base text-on-surface-variant py-4">
+            Aún no hay reseñas para esta película.
+          </p>
+        )}
+
+        <div className="flex flex-col gap-4">
+          {reviews.length > 0 &&
+            reviews.map((e: any) => {
+              return (
+                <div
+                  key={e.id}
+                  className="bg-surface-container rounded-xl p-5 border border-outline/20 flex flex-col gap-2"
+                >
+                  <h3 className="font-headline text-lg font-bold text-on-surface">
+                    {e.author}
+                  </h3>
+                  <p className="font-sans text-sm text-on-surface-variant whitespace-pre-wrap break-words">
+                    {e.content}
+                  </p>
+                </div>
+              );
+            })}
+        </div>
+      </section>
+    </main>
   );
 };
 

@@ -22,7 +22,7 @@ const Card: FC<IcardOwnProps> = ({
       }}
       role="button"
       tabIndex={0}
-      className="bg-surface-container rounded-xl overflow-hidden flex flex-col group hover:-translate-y-2 transition-transform duration-300 cursor-pointer border border-outline/20 shadow-md"
+      className="bg-surface-container rounded-xl overflow-hidden flex flex-col group hover:-translate-y-2 transition-all duration-300 cursor-pointer border border-outline/20 hover:border-primary/50 shadow-md"
     >
       <div className="relative aspect-[2/3] w-full overflow-hidden bg-surface-container-high">
         {poster ? (
@@ -37,8 +37,8 @@ const Card: FC<IcardOwnProps> = ({
           </div>
         )}
         {release ? (
-          <div className="absolute top-2 right-2 bg-background/80 backdrop-blur-md rounded-full px-2 py-0.5 flex items-center gap-1 shadow-sm border border-outline/30">
-            <span className="font-headline text-sm font-bold text-tertiary">
+          <div className="absolute top-2 right-2 bg-black/70 backdrop-blur-md rounded-full px-2.5 py-1 flex items-center gap-1 shadow-sm border border-white/10">
+            <span className="font-headline text-sm font-bold text-on-surface">
               {release.slice(0, 4)}
             </span>
           </div>

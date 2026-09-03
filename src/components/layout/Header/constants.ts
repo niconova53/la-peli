@@ -8,11 +8,7 @@ export const headerItems = [
         href: '/proximamente'
     },
     {
-        title: 'Por Genero',
+        title: 'Géneros',
         href: '/generos'
-    },
-    {
-        title: 'Buscar',
-        href: '/buscar'
     },
 ];

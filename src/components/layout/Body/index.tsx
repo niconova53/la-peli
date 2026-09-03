@@ -29,8 +29,8 @@ const Body: FC<IBodyOwnProps> = ({ children }) => {
   };
 
   return (
-    <div className="relative overflow-x-hidden w-full min-h-screen bg-background pt-[72px] pb-20">
-      {children}
+    <div className="relative overflow-x-hidden w-full min-h-screen bg-background pt-[72px] flex flex-col">
+      <div className="flex-grow flex flex-col">{children}</div>
 
       <button
         className={`${
@@ -42,7 +42,7 @@ const Body: FC<IBodyOwnProps> = ({ children }) => {
           scrollTop();
         }}
       >
-        <p className="text-center w-full font-headline font-semibold text-white">
+        <p className="text-center w-full font-headline font-semibold text-on-primary">
           Subir ↑
         </p>
       </button>

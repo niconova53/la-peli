@@ -5,5 +5,6 @@ export type MovieValues = {
   backdrop_path?: string;
   overview?: string;
   release_date?: string;
-  vote_average?: string;
+  vote_average?: number;
+  original_language?: string;
 };

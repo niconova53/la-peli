@@ -33,12 +33,16 @@ const Genres: FC<IGenresOwnProps> = () => {
   };
 
   return (
-    <main className="flex-grow w-full max-w-7xl mx-auto px-6 py-8 flex flex-col gap-6">
-      <div className="flex justify-between items-end border-b border-outline/30 pb-2">
-        <h1 className="font-headline text-3xl md:text-4xl font-extrabold text-white tracking-tight">
+    <main className="flex-grow w-full max-w-7xl mx-auto px-6 py-8 flex flex-col gap-8">
+      <section className="flex flex-col items-center justify-center text-center py-6">
+        <h1 className="font-headline text-3xl md:text-4xl text-on-surface mb-2 font-bold tracking-tight">
           Explora por Género
         </h1>
-      </div>
+        <p className="font-sans text-base text-on-surface-variant max-w-2xl">
+          Descubre tu próxima película favorita navegando por nuestras
+          categorías cuidadosamente seleccionadas.
+        </p>
+      </section>
 
       {genres.length === 0 && (
         <p className="text-center text-xl font-sans my-4 text-on-surface-variant break-words whitespace-pre-wrap">
@@ -46,7 +50,7 @@ const Genres: FC<IGenresOwnProps> = () => {
         </p>
       )}
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+      <section className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
         {genres.length > 0 &&
           genres.map((e: any) => {
             return (
@@ -55,20 +59,19 @@ const Genres: FC<IGenresOwnProps> = () => {
                 onClick={() => {
                   openGenre(e.id, e.name);
                 }}
-                className="group flex flex-col bg-surface-container border border-outline/20 rounded-xl shadow-card-soft cursor-pointer hover:-translate-y-2 transition-transform duration-300"
+                className="group flex flex-col items-center justify-center bg-surface-container p-8 rounded-xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 cursor-pointer relative overflow-hidden border border-outline-variant hover:border-primary"
               >
-                <div className="w-full flex flex-col justify-around text-center py-6">
-                  <MovieIcon className="w-12 h-12 fill-current text-on-surface-variant group-hover:text-primary mx-auto transition-colors" />
-                  <div>
-                    <h3 className="font-headline font-semibold my-4 text-white break-words whitespace-pre-wrap">
-                      {e.name}
-                    </h3>
-                  </div>
+                <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/[0.05] transition-colors duration-300" />
+                <div className="w-16 h-16 rounded-full bg-surface flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 group-hover:bg-primary text-primary group-hover:text-white border border-outline-variant">
+                  <MovieIcon className="w-8 h-8 fill-current" />
                 </div>
+                <h3 className="font-headline text-xl text-on-surface group-hover:text-primary transition-colors duration-300 text-center font-semibold">
+                  {e.name}
+                </h3>
               </div>
             );
           })}
-      </div>
+      </section>
     </main>
   );
 };

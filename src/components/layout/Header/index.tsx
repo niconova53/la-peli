@@ -5,21 +5,39 @@ import { headerItems } from "./constants";
 import Drawer from "./Drawer";
 import { useDropBtn } from "../../../hooks";
 
+const Logo: FC = () => (
+  <span className="flex items-center gap-2">
+    <svg viewBox="0 0 48 48" className="h-9 w-9" aria-hidden="true">
+      <rect width="48" height="48" rx="10" fill="#1e293b" />
+      <circle
+        cx="24"
+        cy="24"
+        r="7"
+        fill="none"
+        stroke="#8b5cf6"
+        strokeWidth="3"
+      />
+      <circle cx="24" cy="24" r="2.5" fill="#8b5cf6" />
+    </svg>
+    <span className="font-headline text-2xl font-bold text-primary tracking-tight">
+      La Peli
+    </span>
+  </span>
+);
+
 const Header: FC<IHeaderOwnProps> = () => {
   const { show, setShow, container } = useDropBtn();
   const history = useHistory();
 
   return (
-    <header className="bg-background/90 backdrop-blur-md fixed top-0 w-full z-50 shadow-md border-b border-outline/30 transition-all duration-300">
-      <nav className="flex justify-between items-center px-6 py-2 max-w-7xl mx-auto z-50 w-full">
+    <header className="bg-surface-container-low sticky top-0 z-50 w-full shadow-sm border-b border-surface-container">
+      <nav className="flex justify-between items-center w-full px-6 py-2 max-w-7xl mx-auto">
         <button
           type="button"
-          className="flex items-center gap-1 focus:outline-none"
+          className="flex items-center gap-1 focus:outline-none hover:scale-105 transition-transform"
           onClick={() => history.push("/cartelera")}
         >
-          <span className="font-headline text-2xl font-bold text-primary tracking-tight">
-            La Peli
-          </span>
+          <Logo />
         </button>
 
         <div className="hidden md:flex items-center gap-6">
@@ -30,7 +48,7 @@ const Header: FC<IHeaderOwnProps> = () => {
                 to={item.href}
                 replace
                 activeClassName="text-primary border-b-2 border-primary"
-                className="font-headline text-base text-secondary hover:text-primary pb-1 transition-colors border-b-2 border-transparent active:scale-95 duration-100"
+                className="font-headline text-base text-on-surface-variant hover:text-primary hover:bg-surface-container rounded-lg px-3 py-2 transition-all duration-200 border-b-2 border-transparent"
               >
                 {item.title}
               </NavLink>
@@ -41,7 +59,8 @@ const Header: FC<IHeaderOwnProps> = () => {
         <div className="flex items-center gap-2">
           <button
             type="button"
-            className="hidden md:flex text-secondary hover:text-primary transition-colors p-2 rounded-full hover:bg-surface-container active:scale-95 duration-100 focus:outline-none"
+            aria-label="Buscar"
+            className="hidden md:flex text-on-surface-variant hover:text-primary transition-colors p-2 rounded-lg hover:bg-surface-container active:scale-95 duration-100 focus:outline-none"
             onClick={() => history.push("/buscar")}
           >
             <svg
@@ -61,7 +80,8 @@ const Header: FC<IHeaderOwnProps> = () => {
 
           <button
             type="button"
-            className="md:hidden text-secondary hover:text-primary transition-colors p-2 rounded-full hover:bg-surface-container active:scale-95 duration-100 focus:outline-none"
+            aria-label="Menú"
+            className="md:hidden text-on-surface-variant hover:text-primary transition-colors p-2 rounded-lg hover:bg-surface-container active:scale-95 duration-100 focus:outline-none"
             onClick={() => setShow(!show)}
           >
             <svg
