@@ -4,13 +4,13 @@ import { useParams } from "react-router-dom";
 import { IMovieSelectedOwnProps, MovieValues } from "./types";
 import { getMovieById, getMovieReviews } from "../../services/moviesAPI";
 import { API_IMG_URL } from "../../constants";
-import { translateToSpanish, translateManyToSpanish } from "../../services/translate";
+import { translateToSpanish } from "../../services/translate";
 
 const MovieSelected: FC<IMovieSelectedOwnProps> = () => {
   const [movie, setMovie] = useState<MovieValues>({});
   const [reviews, setReviews] = useState<any[]>([]);
-  const [overviewEs, setOverviewEs] = useState<string | null>(null);
   const [reviewsEs, setReviewsEs] = useState<Record<string, string>>({});
+  const [translatingIds, setTranslatingIds] = useState<Record<string, boolean>>({});
 
   const { id } = useParams<{ id: string }>();
 
@@ -20,7 +20,6 @@ const MovieSelected: FC<IMovieSelectedOwnProps> = () => {
       try {
         const movieInfo = await getMovieById(id);
         const movieReviews = await getMovieReviews(id);
-
         setMovie(movieInfo);
         setReviews(movieReviews);
       } catch (error) {
@@ -34,34 +33,18 @@ const MovieSelected: FC<IMovieSelectedOwnProps> = () => {
     };
   }, [id]);
 
-  useEffect(() => {
-    if (movie.overview) {
-      translateToSpanish(movie.overview).then(setOverviewEs);
-    } else {
-      setOverviewEs(null);
-    }
-  }, [movie.overview]);
-
-  useEffect(() => {
-    if (reviews.length === 0) {
-      setReviewsEs({});
-      return;
-    }
-    const contents = reviews.map((r) => r.content as string);
-    translateManyToSpanish(contents).then((translated) => {
-      const map: Record<string, string> = {};
-      reviews.forEach((r, i) => {
-        map[r.id] = translated[i];
-      });
-      setReviewsEs(map);
-    });
-  }, [reviews]);
+  const handleTranslateReview = async (reviewId: string, content: string) => {
+    setTranslatingIds((prev) => ({ ...prev, [reviewId]: true }));
+    const translated = await translateToSpanish(content);
+    setReviewsEs((prev) => ({ ...prev, [reviewId]: translated }));
+    setTranslatingIds((prev) => ({ ...prev, [reviewId]: false }));
+  };
 
   const year = movie.release_date ? movie.release_date.slice(0, 4) : "—";
 
   return (
     <main className="flex-grow w-full flex flex-col">
-      {/* Hero */}
+      {/* Hero - overview ya viene en es-ES desde TMDB, sin MyMemory */}
       <section className="relative w-full overflow-hidden flex items-center" style={{ minHeight: "560px" }}>
         <div
           className="absolute inset-0 bg-cover bg-center w-full h-full bg-surface-card"
@@ -83,7 +66,7 @@ const MovieSelected: FC<IMovieSelectedOwnProps> = () => {
             {movie.title || "Cargando..."}
           </h1>
           <p className="font-sans text-white max-w-2xl leading-relaxed drop-shadow" style={{ fontSize: "18px", lineHeight: "28px" }}>
-            {overviewEs || movie.overview || "Sinopsis no disponible por el momento — descubre esta película en detalle."}
+            {movie.overview || "Sinopsis no disponible por el momento — descubre esta película en detalle."}
           </p>
         </div>
       </section>
@@ -94,9 +77,7 @@ const MovieSelected: FC<IMovieSelectedOwnProps> = () => {
           <span className="font-sans text-text-secondary uppercase" style={{ fontSize: "12px", lineHeight: "14px", letterSpacing: "0.08em", fontWeight: 600 }}>
             Año
           </span>
-          <span className="font-headline text-xl text-white font-bold">
-            {year}
-          </span>
+          <span className="font-headline text-xl text-white font-bold">{year}</span>
         </div>
         <div className="bg-surface-card rounded-xl p-4 border border-border-subtle flex flex-col gap-1">
           <span className="font-sans text-text-secondary uppercase" style={{ fontSize: "12px", lineHeight: "14px", letterSpacing: "0.08em", fontWeight: 600 }}>
@@ -111,19 +92,13 @@ const MovieSelected: FC<IMovieSelectedOwnProps> = () => {
           <span className="font-sans text-text-secondary uppercase" style={{ fontSize: "12px", lineHeight: "14px", letterSpacing: "0.08em", fontWeight: 600 }}>
             Reseñas
           </span>
-          <span className="font-headline text-xl text-white font-bold">
-            {reviews ? reviews.length : 0}
-          </span>
+          <span className="font-headline text-xl text-white font-bold">{reviews ? reviews.length : 0}</span>
         </div>
         <div className="bg-surface-card rounded-xl p-4 border border-border-subtle flex flex-col gap-1">
           <span className="font-sans text-text-secondary uppercase" style={{ fontSize: "12px", lineHeight: "14px", letterSpacing: "0.08em", fontWeight: 600 }}>
             Idioma
           </span>
-          <span className="font-headline text-xl text-white font-bold">
-            {movie.original_language
-              ? movie.original_language.toUpperCase()
-              : "—"}
-          </span>
+          <span className="font-headline text-xl text-white font-bold">{movie.original_language ? movie.original_language.toUpperCase() : "—"}</span>
         </div>
       </section>
 
@@ -144,14 +119,25 @@ const MovieSelected: FC<IMovieSelectedOwnProps> = () => {
         <div className="flex flex-col gap-4">
           {reviews.length > 0 &&
             reviews.map((e: any) => {
+              const isTranslated = !!reviewsEs[e.id];
+              const isTranslating = !!translatingIds[e.id];
               return (
-                <div
-                  key={e.id}
-                  className="bg-surface-card rounded-xl p-5 border border-border-subtle flex flex-col gap-2"
-                >
-                  <h3 className="font-headline text-white font-bold" style={{ fontSize: "18px", lineHeight: "28px" }}>
-                    {e.author}
-                  </h3>
+                <div key={e.id} className="bg-surface-card rounded-xl p-5 border border-border-subtle flex flex-col gap-2">
+                  <div className="flex justify-between items-center gap-2">
+                    <h3 className="font-headline text-white font-bold" style={{ fontSize: "18px", lineHeight: "28px" }}>
+                      {e.author}
+                    </h3>
+                    <button
+                      type="button"
+                      onClick={() => handleTranslateReview(e.id, e.content)}
+                      disabled={isTranslating || isTranslated}
+                      className={`text-xs font-sans font-semibold px-3 py-1.5 rounded-full border transition-colors whitespace-nowrap ${
+                        isTranslated ? "bg-primary/20 border-primary/30 text-primary cursor-default" : "bg-transparent border-border-subtle text-text-secondary hover:border-primary hover:text-primary"
+                      }`}
+                    >
+                      {isTranslating ? "Traduciendo..." : isTranslated ? "✓ Traducido" : "Traducir al español"}
+                    </button>
+                  </div>
                   <p className="font-sans text-text-secondary whitespace-pre-wrap break-words" style={{ fontSize: "14px", lineHeight: "20px" }}>
                     {reviewsEs[e.id] || e.content}
                   </p>

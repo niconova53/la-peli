@@ -5,11 +5,9 @@ import { ICurrentMoviesOwnProps, MovieValues } from "./types";
 import { Card } from "../../components";
 import { getCurrentMovies } from "../../services/moviesAPI";
 import { API_IMG_URL, genreName } from "../../constants";
-import { translateToSpanish } from "../../services/translate";
 
 const CurrentMovies: FC<ICurrentMoviesOwnProps> = () => {
   const [movies, setMovies] = useState<MovieValues[]>([]);
-  const [featuredOverviewEs, setFeaturedOverviewEs] = useState<string | null>(null);
   const history = useHistory();
 
   useEffect(() => {
@@ -36,14 +34,6 @@ const CurrentMovies: FC<ICurrentMoviesOwnProps> = () => {
   };
 
   const featured = movies[0];
-
-  useEffect(() => {
-    if (featured?.overview) {
-      translateToSpanish(featured.overview).then(setFeaturedOverviewEs);
-    } else {
-      setFeaturedOverviewEs(null);
-    }
-  }, [featured?.overview]);
 
   return (
     <main className="flex-grow">
@@ -77,7 +67,7 @@ const CurrentMovies: FC<ICurrentMoviesOwnProps> = () => {
               Estreno de la Semana: {featured.title}
             </h1>
             <p className="font-sans text-white max-w-2xl leading-relaxed drop-shadow" style={{ fontSize: "18px", lineHeight: "28px" }}>
-              {featuredOverviewEs || featured.overview || "Descubre esta historia en la pantalla grande — no te pierdas el estreno más esperado de la semana."}
+              {featured.overview || "Descubre esta historia en la pantalla grande — no te pierdas el estreno más esperado de la semana."}
             </p>
             <div className="mt-6 flex gap-4">
               <button
