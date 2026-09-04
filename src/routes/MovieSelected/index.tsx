@@ -31,16 +31,14 @@ const MovieSelected: FC<IMovieSelectedOwnProps> = () => {
     };
   }, [id]);
 
-  const year = movie.release_date
-    ? movie.release_date.slice(0, 4)
-    : "—";
+  const year = movie.release_date ? movie.release_date.slice(0, 4) : "—";
 
   return (
     <main className="flex-grow w-full flex flex-col">
       {/* Hero */}
-      <section className="relative w-full h-[60vh] md:h-[70vh] overflow-hidden">
+      <section className="relative w-full h-[70vh] overflow-hidden">
         <div
-          className="absolute inset-0 bg-cover bg-center w-full h-full bg-surface-container"
+          className="absolute inset-0 bg-cover bg-center w-full h-full bg-surface-card"
           style={
             movie.backdrop_path
               ? {
@@ -52,50 +50,50 @@ const MovieSelected: FC<IMovieSelectedOwnProps> = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-background/20" />
 
         <div className="absolute bottom-0 left-0 p-6 md:p-12 w-full md:w-2/3 flex flex-col gap-3">
-          <span className="bg-primary/20 text-primary-fixed px-3 py-1 rounded-full text-sm font-headline w-max border border-primary/30 backdrop-blur-sm">
-            Estreno de la Semana
+          <span className="bg-primary/20 text-primary-fixed px-3 py-1 rounded-full text-sm font-headline font-semibold w-max border border-primary/30 backdrop-blur-sm">
+            ★ Estreno de la Semana
           </span>
-          <h1 className="font-headline text-4xl md:text-6xl text-white font-extrabold tracking-tight">
+          <h1 className="font-headline text-4xl md:text-6xl text-white font-bold tracking-tight">
             {movie.title || "Cargando..."}
           </h1>
-          <p className="font-sans text-base md:text-lg text-on-surface-variant line-clamp-3 md:line-clamp-4 max-w-2xl">
+          <p className="font-sans text-base md:text-lg text-slate-300 line-clamp-3 md:line-clamp-4 max-w-2xl">
             {movie.overview || "Cargando..."}
           </p>
         </div>
       </section>
 
       {/* Info strip */}
-      <section className="w-full max-w-7xl mx-auto px-6 py-6 grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div className="bg-surface-container rounded-xl p-4 border border-outline/20 flex flex-col gap-1">
-          <span className="font-sans text-xs text-on-surface-variant uppercase tracking-wide">
+      <section className="w-full max-w-[1200px] mx-auto px-6 py-6 grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="bg-surface-card rounded-xl p-4 border border-border-subtle flex flex-col gap-1">
+          <span className="font-sans text-xs text-text-secondary uppercase tracking-wider">
             Año
           </span>
-          <span className="font-headline text-xl text-on-surface font-bold">
+          <span className="font-headline text-xl text-white font-bold">
             {year}
           </span>
         </div>
-        <div className="bg-surface-container rounded-xl p-4 border border-outline/20 flex flex-col gap-1">
-          <span className="font-sans text-xs text-on-surface-variant uppercase tracking-wide">
+        <div className="bg-surface-card rounded-xl p-4 border border-border-subtle flex flex-col gap-1">
+          <span className="font-sans text-xs text-text-secondary uppercase tracking-wider">
             Rating
           </span>
-          <span className="font-headline text-xl text-on-surface font-bold flex items-center gap-2">
+          <span className="font-headline text-xl text-white font-bold flex items-center gap-2">
             <span className="text-tertiary">★</span>
             {movie.vote_average ? movie.vote_average : "—"}
           </span>
         </div>
-        <div className="bg-surface-container rounded-xl p-4 border border-outline/20 flex flex-col gap-1">
-          <span className="font-sans text-xs text-on-surface-variant uppercase tracking-wide">
+        <div className="bg-surface-card rounded-xl p-4 border border-border-subtle flex flex-col gap-1">
+          <span className="font-sans text-xs text-text-secondary uppercase tracking-wider">
             Reseñas
           </span>
-          <span className="font-headline text-xl text-on-surface font-bold">
+          <span className="font-headline text-xl text-white font-bold">
             {reviews ? reviews.length : 0}
           </span>
         </div>
-        <div className="bg-surface-container rounded-xl p-4 border border-outline/20 flex flex-col gap-1">
-          <span className="font-sans text-xs text-on-surface-variant uppercase tracking-wide">
+        <div className="bg-surface-card rounded-xl p-4 border border-border-subtle flex flex-col gap-1">
+          <span className="font-sans text-xs text-text-secondary uppercase tracking-wider">
             Idioma
           </span>
-          <span className="font-headline text-xl text-on-surface font-bold">
+          <span className="font-headline text-xl text-white font-bold">
             {movie.original_language
               ? movie.original_language.toUpperCase()
               : "—"}
@@ -104,15 +102,15 @@ const MovieSelected: FC<IMovieSelectedOwnProps> = () => {
       </section>
 
       {/* Reviews */}
-      <section className="w-full max-w-7xl mx-auto px-6 pb-12 flex flex-col gap-4">
-        <div className="flex justify-between items-end border-b border-outline/30 pb-2">
-          <h2 className="font-headline text-2xl md:text-3xl font-extrabold text-white tracking-tight">
+      <section className="w-full max-w-[1200px] mx-auto px-6 pb-12 flex flex-col gap-4">
+        <div className="flex justify-between items-end border-b border-border-subtle pb-2">
+          <h2 className="font-headline text-2xl md:text-3xl font-bold text-white tracking-tight">
             Reseñas de Usuarios
           </h2>
         </div>
 
         {reviews.length === 0 && (
-          <p className="font-sans text-base text-on-surface-variant py-4">
+          <p className="font-sans text-base text-text-secondary py-4">
             Aún no hay reseñas para esta película.
           </p>
         )}
@@ -123,12 +121,12 @@ const MovieSelected: FC<IMovieSelectedOwnProps> = () => {
               return (
                 <div
                   key={e.id}
-                  className="bg-surface-container rounded-xl p-5 border border-outline/20 flex flex-col gap-2"
+                  className="bg-surface-card rounded-xl p-5 border border-border-subtle flex flex-col gap-2"
                 >
-                  <h3 className="font-headline text-lg font-bold text-on-surface">
+                  <h3 className="font-headline text-lg font-bold text-white">
                     {e.author}
                   </h3>
-                  <p className="font-sans text-sm text-on-surface-variant whitespace-pre-wrap break-words">
+                  <p className="font-sans text-sm text-text-secondary whitespace-pre-wrap break-words">
                     {e.content}
                   </p>
                 </div>

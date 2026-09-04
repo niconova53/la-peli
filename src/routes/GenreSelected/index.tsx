@@ -4,6 +4,7 @@ import { useParams, useHistory } from "react-router-dom";
 import { IGenreSelectedOwnProps, MovieValues } from "./types";
 import { Card } from "../../components";
 import { getByGenre } from "../../services/moviesAPI";
+import { genreName } from "../../constants";
 
 const GenreSelected: FC<IGenreSelectedOwnProps> = () => {
   const [movies, setMovies] = useState<MovieValues[]>([]);
@@ -33,20 +34,20 @@ const GenreSelected: FC<IGenreSelectedOwnProps> = () => {
   };
 
   return (
-    <main className="flex-grow w-full max-w-7xl mx-auto px-6 py-8 flex flex-col gap-6">
-      <div className="flex justify-between items-end border-b border-outline/30 pb-2">
+    <main className="flex-grow w-full max-w-[1200px] mx-auto px-6 py-10 flex flex-col gap-6">
+      <div className="flex justify-between items-end border-b border-border-subtle pb-2">
         <h1 className="font-headline text-3xl md:text-4xl font-extrabold text-white tracking-tight capitalize">
           {name ? name.replace(/-/g, " ") : ""}
         </h1>
       </div>
 
       {movies.length === 0 && (
-        <p className="text-center text-xl font-sans my-4 text-on-surface-variant break-words whitespace-pre-wrap">
+        <p className="text-center text-xl font-sans my-4 text-text-secondary break-words whitespace-pre-wrap">
           Cargando...
         </p>
       )}
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {movies.length > 0 &&
           movies.map((e: MovieValues) => {
             return (
@@ -56,6 +57,12 @@ const GenreSelected: FC<IGenreSelectedOwnProps> = () => {
                 title={e.title}
                 overview={e.overview}
                 release={e.release_date}
+                rating={e.vote_average}
+                genre={
+                  e.genre_ids && e.genre_ids.length > 0
+                    ? genreName(e.genre_ids[0])
+                    : ""
+                }
                 movieId={e.id}
                 openMovie={openMovie}
               />

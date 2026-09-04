@@ -11,7 +11,7 @@ const DrawerResponsive: FC<IDrawerOwnProps> = ({
 }) => {
   return (
     <div
-      className="md:hidden absolute right-5 w-2/3 z-10"
+      className="md:hidden absolute right-5 w-2/3 z-10 top-full"
       id="mobile-menu"
       ref={container}
     >
@@ -24,7 +24,7 @@ const DrawerResponsive: FC<IDrawerOwnProps> = ({
         leaveFrom="opacity-100 scale-100"
         leaveTo="opacity-0 scale-95"
       >
-        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 mt-2 bg-surface-container rounded-lg shadow-card-soft ring-1 ring-outline-variant">
+        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 mt-2 bg-surface-card rounded-xl shadow-card-soft ring-1 ring-border-subtle">
           {headerItems.map((item: DrawerItem) => {
             return (
               <NavLink
@@ -33,7 +33,7 @@ const DrawerResponsive: FC<IDrawerOwnProps> = ({
                 to={item.href}
                 replace
                 activeClassName="text-primary font-semibold"
-                className="text-on-surface-variant hover:bg-surface-container-high hover:text-primary truncate px-3 py-2 rounded-lg text-base font-medium flex transition-colors"
+                className="text-on-surface-variant hover:text-text-primary hover:bg-surface-variant/50 truncate px-3 py-2 rounded-lg text-base font-medium flex transition-colors"
               >
                 {item.title}
               </NavLink>
@@ -44,7 +44,7 @@ const DrawerResponsive: FC<IDrawerOwnProps> = ({
             to="/buscar"
             replace
             activeClassName="text-primary font-semibold"
-            className="text-on-surface-variant hover:bg-surface-container-high hover:text-primary truncate px-3 py-2 rounded-lg text-base font-medium flex transition-colors"
+            className="text-on-surface-variant hover:text-text-primary hover:bg-surface-variant/50 truncate px-3 py-2 rounded-lg text-base font-medium flex transition-colors"
           >
             Buscar
           </NavLink>

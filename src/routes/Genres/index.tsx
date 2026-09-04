@@ -33,19 +33,19 @@ const Genres: FC<IGenresOwnProps> = () => {
   };
 
   return (
-    <main className="flex-grow w-full max-w-7xl mx-auto px-6 py-8 flex flex-col gap-8">
+    <main className="flex-grow w-full max-w-[1200px] mx-auto px-6 py-10 flex flex-col gap-8">
       <section className="flex flex-col items-center justify-center text-center py-6">
-        <h1 className="font-headline text-3xl md:text-4xl text-on-surface mb-2 font-bold tracking-tight">
+        <h1 className="font-headline text-3xl md:text-4xl text-white mb-2 font-bold tracking-tight">
           Explora por Género
         </h1>
-        <p className="font-sans text-base text-on-surface-variant max-w-2xl">
+        <p className="font-sans text-base text-text-secondary max-w-2xl">
           Descubre tu próxima película favorita navegando por nuestras
           categorías cuidadosamente seleccionadas.
         </p>
       </section>
 
       {genres.length === 0 && (
-        <p className="text-center text-xl font-sans my-4 text-on-surface-variant break-words whitespace-pre-wrap">
+        <p className="text-center text-xl font-sans my-4 text-text-secondary break-words whitespace-pre-wrap">
           Cargando...
         </p>
       )}
@@ -59,13 +59,13 @@ const Genres: FC<IGenresOwnProps> = () => {
                 onClick={() => {
                   openGenre(e.id, e.name);
                 }}
-                className="group flex flex-col items-center justify-center bg-surface-container p-8 rounded-xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 cursor-pointer relative overflow-hidden border border-outline-variant hover:border-primary"
+                className="group flex flex-col items-center justify-center bg-surface-card p-8 rounded-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer relative overflow-hidden border border-border-subtle hover:border-primary"
               >
                 <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/[0.05] transition-colors duration-300" />
-                <div className="w-16 h-16 rounded-full bg-surface flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 group-hover:bg-primary text-primary group-hover:text-white border border-outline-variant">
+                <div className="w-16 h-16 rounded-full bg-surface flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 group-hover:bg-primary text-primary group-hover:text-white border border-border-subtle">
                   <MovieIcon className="w-8 h-8 fill-current" />
                 </div>
-                <h3 className="font-headline text-xl text-on-surface group-hover:text-primary transition-colors duration-300 text-center font-semibold">
+                <h3 className="font-headline text-xl text-white group-hover:text-primary transition-colors duration-300 text-center font-semibold">
                   {e.name}
                 </h3>
               </div>
