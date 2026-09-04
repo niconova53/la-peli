@@ -8,7 +8,9 @@
   "license": "MIT",
   "scripts": {
     "deploy": "gh-pages -d build/release",
-    "dev": "parcel src/index.html --out-dir build/debug",
+    "dev": "parcel src/index.html --out-dir build/debug --open",
+    "dev:host": "parcel src/index.html --out-dir build/debug --host 0.0.0.0 --port 1234 --open",
+    "dev:tunnel": "parcel src/index.html --out-dir build/debug --host 0.0.0.0 --port 1234 --open & npx --yes localtunnel --port 1234",
     "build": "parcel build src/index.html --out-dir build/release --public-url ./",
     "lint": "eslint src --ext .ts,.tsx,.js,.jsx --fix"
   },
