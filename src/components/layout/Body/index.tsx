@@ -32,12 +32,14 @@ const Body: FC<IBodyOwnProps> = ({ children }) => {
       <button
         className={`${
           showScroll ? "flex" : "hidden"
-        } fixed bottom-16 right-4 text-xl overflow-hidden bg-primary rounded-lg w-28 h-12 items-center hover:bg-primary-hover focus:outline-none shadow-card-soft z-40`}
+        } fixed right-4 items-center justify-center rounded-full w-11 h-11 text-white focus:outline-none z-40 backdrop-blur-md border border-white/10 shadow-lg transition-all hover:scale-105`}
+        style={{ bottom: "114px", backgroundColor: "rgba(139,92,246,0.22)" }}
         type="button"
         onClick={handleScrollTop}
+        aria-label="Subir"
       >
-        <span className="text-center w-full font-headline font-semibold text-white">
-          Subir ↑
+        <span className="material-symbols-outlined" style={{ fontSize: "22px" }}>
+          arrow_upward
         </span>
       </button>
     </div>

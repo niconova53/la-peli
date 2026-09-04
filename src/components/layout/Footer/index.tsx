@@ -17,7 +17,7 @@ const Footer: FC<IFooterOwnProps> = () => {
         </span>
       </div>
 
-      <nav className="flex flex-wrap justify-center gap-4 md:gap-6 font-sans" style={{ fontSize: "14px", lineHeight: "20px" }}>
+      <nav className="flex flex-wrap justify-center gap-4 md:gap-6 font-sans items-center" style={{ fontSize: "14px", lineHeight: "20px" }}>
         {headerItems.map((item) => (
           <NavLink
             key={`footer-nav-${item.href}`}
@@ -27,12 +27,14 @@ const Footer: FC<IFooterOwnProps> = () => {
             {item.title}
           </NavLink>
         ))}
-        <span className="text-text-secondary hover:text-text-primary hover:underline transition-opacity duration-200 cursor-default">
-          Términos Legales
-        </span>
-        <span className="text-text-secondary hover:text-text-primary hover:underline transition-opacity duration-200 cursor-default">
-          Privacidad
-        </span>
+        <a
+          href="https://www.linkedin.com/in/nicolas-novacovich-002211173/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-text-secondary hover:text-primary transition-colors font-semibold"
+        >
+          Nicolas Novacovich
+        </a>
       </nav>
     </footer>
   );
