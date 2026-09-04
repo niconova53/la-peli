@@ -57,16 +57,9 @@ const CurrentMovies: FC<ICurrentMoviesOwnProps> = () => {
           </div>
 
           <div className="relative z-10 w-full max-w-[1200px] mx-auto px-6 pb-10">
-            <div
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-4 mt-6 border shadow-sm"
-              style={{
-                backgroundColor: "rgba(139, 92, 246, 0.30)",
-                borderColor: "rgba(139, 92, 246, 0.45)",
-                backdropFilter: "blur(8px)",
-              }}
-            >
-              <span className="text-primary-fixed text-sm leading-none">★</span>
-              <span className="font-sans text-xs font-bold text-primary-fixed uppercase tracking-wider">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-4 mt-6 border shadow-sm bg-surface-card" style={{ borderColor: "rgba(255,255,255,0.10)" }}>
+              <span className="text-tertiary text-xs leading-none">★</span>
+              <span className="font-headline font-bold text-white uppercase" style={{ fontSize: "11px", letterSpacing: "0.12em" }}>
                 Estreno de la Semana
               </span>
             </div>

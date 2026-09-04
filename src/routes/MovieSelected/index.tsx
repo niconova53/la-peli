@@ -50,14 +50,7 @@ const MovieSelected: FC<IMovieSelectedOwnProps> = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-background/20" />
 
         <div className="absolute bottom-0 left-0 p-6 md:p-12 w-full md:w-2/3 flex flex-col gap-3">
-          <span
-            className="px-3 py-1.5 rounded-full text-sm font-headline font-semibold w-max border shadow-sm text-primary-fixed mt-6"
-            style={{
-              backgroundColor: "rgba(139, 92, 246, 0.30)",
-              borderColor: "rgba(139, 92, 246, 0.45)",
-              backdropFilter: "blur(8px)",
-            }}
-          >
+          <span className="px-3 py-1.5 rounded-full font-headline font-bold w-max border shadow-sm bg-surface-card text-white uppercase mt-6" style={{ fontSize: "11px", letterSpacing: "0.12em", borderColor: "rgba(255,255,255,0.10)" }}>
             ★ Estreno de la Semana
           </span>
           <h1 className="font-headline text-4xl md:text-6xl text-white font-bold tracking-tight">
