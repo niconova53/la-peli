@@ -29,7 +29,7 @@ const Card: FC<IcardOwnProps> = ({ poster, title, overview, release, rating, gen
       tabIndex={0}
       className="group relative bg-surface-card rounded-xl border border-border-subtle overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:border-primary/50 hover:shadow-card-hover flex flex-col h-full cursor-pointer"
     >
-      <div className="relative aspect-[2/3] overflow-hidden bg-surface-container-high">
+      <div className="relative overflow-hidden bg-surface-container-high" style={{ aspectRatio: "2 / 3" }}>
         {poster ? (
           <img
             src={`${API_IMG_URL}w500${poster}`}
