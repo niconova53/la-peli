@@ -38,9 +38,7 @@ const Card: FC<IcardOwnProps> = ({ poster, title, overview, release, rating, gen
             style={{ transitionProperty: "background-color, border-color, color, fill, stroke, opacity, box-shadow, transform" }}
           />
         ) : (
-          <div className="w-full h-full transform transition duration-700 ease-out group-hover:scale-[1.04]" style={{ transitionProperty: "background-color, border-color, color, fill, stroke, opacity, box-shadow, transform" }}>
-            <FallbackPoster title={title} />
-          </div>
+          <FallbackPoster title={title} />
         )}
 
         <div className="absolute top-2 left-2 right-2 flex justify-end gap-1.5 flex-wrap pointer-events-none">
