@@ -1,60 +1,74 @@
-// Traducción MyMemory — modo bajo demanda con cache persistente
-// TMDB ya devuelve overview en es-ES (language=es-ES), solo reviews necesitan traducir y bajo demanda
-// para no agotar quota diaria (1000 requests/día free)
+import translate from "translate";
 
-const CACHE = new Map<string, string>();
+// Config: Google free sin key
+(translate as any).engine = "google";
 
-// Cargar cache de localStorage
+const CACHE_KEY = "la-peli-translate-cache-v2";
+const BATCH_SIZE = 5;
+
+const cache = new Map<string, string>();
+
 try {
-  const saved = localStorage.getItem("la-peli-translate-cache");
-  if (saved) {
-    const obj = JSON.parse(saved);
-    Object.entries(obj).forEach(([k, v]) => CACHE.set(k, v as string));
+  const raw = localStorage.getItem(CACHE_KEY);
+  if (raw) {
+    const obj = JSON.parse(raw) as Record<string, string>;
+    Object.entries(obj).forEach(([k, v]) => cache.set(k, v));
   }
 } catch {}
 
-const persistCache = () => {
+function persist() {
   try {
     const obj: Record<string, string> = {};
-    CACHE.forEach((v, k) => {
+    cache.forEach((v, k) => {
       obj[k] = v;
     });
-    localStorage.setItem("la-peli-translate-cache", JSON.stringify(obj));
+    localStorage.setItem(CACHE_KEY, JSON.stringify(obj));
   } catch {}
-};
+}
 
-let quotaExhaustedUntil: number | null = null;
-
-export const isQuotaExhausted = () => quotaExhaustedUntil !== null && Date.now() < quotaExhaustedUntil;
-
-export const translateToSpanish = async (text: string): Promise<string> => {
+export async function translateToSpanish(text: string): Promise<string> {
   if (!text || !text.trim()) return text;
-  const trimmed = text.trim();
-  if (CACHE.has(trimmed)) return CACHE.get(trimmed)!;
-  if (isQuotaExhausted()) return trimmed;
+  const trimmed = text.trim().slice(0, 900);
+  if (cache.has(trimmed)) return cache.get(trimmed)!;
 
   try {
-    const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(trimmed.slice(0, 500))}&langpair=en|es`;
-    const res = await fetch(url);
-    const data = await res.json();
-
-    // Detectar quota agotada
-    const translatedText: string = data?.responseData?.translatedText || "";
-    if (translatedText.includes("MYMEMORY WARNING") || data?.responseStatus === 429) {
-      // quota diaria agotada — bloquear por 4h
-      quotaExhaustedUntil = Date.now() + 4 * 60 * 60 * 1000;
-      return trimmed;
-    }
-
-    if (translatedText && translatedText.trim() && translatedText !== trimmed) {
-      CACHE.set(trimmed, translatedText);
-      persistCache();
-      return translatedText;
-    }
-    // Si devuelve igual, cachear igual para no reintentar
-    CACHE.set(trimmed, trimmed);
-    return trimmed;
+    const res = await translate(trimmed, { from: "en", to: "es" });
+    const out = typeof res === "string" && res.trim() ? res : trimmed;
+    cache.set(trimmed, out);
+    persist();
+    return out;
   } catch {
-    return text;
+    return trimmed;
   }
-};
+}
+
+export async function translateManyToSpanish(texts: string[], limit = BATCH_SIZE): Promise<string[]> {
+  const slice = texts.slice(0, limit);
+  const results: string[] = [];
+
+  for (let i = 0; i < slice.length; i++) {
+    const t = slice[i];
+    if (cache.has(t.trim().slice(0, 900))) {
+      results.push(cache.get(t.trim().slice(0, 900))!);
+    } else {
+      // eslint-disable-next-line no-await-in-loop
+      const translated = await translateToSpanish(t);
+      results.push(translated);
+      if (i < slice.length - 1) {
+        // eslint-disable-next-line no-await-in-loop
+        await new Promise((r) => setTimeout(r, 400));
+      }
+    }
+  }
+
+  // Rellenar resto sin traducir (se traducen on-demand si el usuario hace scroll)
+  for (let i = slice.length; i < texts.length; i++) {
+    results.push(texts[i]);
+  }
+
+  return results;
+}
+
+export function getCachedTranslation(text: string): string | undefined {
+  return cache.get(text.trim().slice(0, 900));
+}

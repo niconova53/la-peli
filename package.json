@@ -46,6 +46,7 @@
     "react-router-dom": "^5.2.0",
     "react-scroll": "^1.8.2",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",
+    "translate": "^3.1.0",
     "yup": "^0.32.9"
   }
 }

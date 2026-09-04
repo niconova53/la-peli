@@ -4,13 +4,15 @@ import { useParams } from "react-router-dom";
 import { IMovieSelectedOwnProps, MovieValues } from "./types";
 import { getMovieById, getMovieReviews } from "../../services/moviesAPI";
 import { API_IMG_URL } from "../../constants";
-import { translateToSpanish } from "../../services/translate";
+import { translateManyToSpanish, getCachedTranslation } from "../../services/translate";
+
+const VISIBLE_BATCH = 5;
 
 const MovieSelected: FC<IMovieSelectedOwnProps> = () => {
   const [movie, setMovie] = useState<MovieValues>({});
   const [reviews, setReviews] = useState<any[]>([]);
   const [reviewsEs, setReviewsEs] = useState<Record<string, string>>({});
-  const [translatingIds, setTranslatingIds] = useState<Record<string, boolean>>({});
+  const [visibleCount, setVisibleCount] = useState(VISIBLE_BATCH);
 
   const { id } = useParams<{ id: string }>();
 
@@ -22,6 +24,7 @@ const MovieSelected: FC<IMovieSelectedOwnProps> = () => {
         const movieReviews = await getMovieReviews(id);
         setMovie(movieInfo);
         setReviews(movieReviews);
+        setVisibleCount(VISIBLE_BATCH);
       } catch (error) {
         console.log(error);
       }
@@ -33,18 +36,52 @@ const MovieSelected: FC<IMovieSelectedOwnProps> = () => {
     };
   }, [id]);
 
-  const handleTranslateReview = async (reviewId: string, content: string) => {
-    setTranslatingIds((prev) => ({ ...prev, [reviewId]: true }));
-    const translated = await translateToSpanish(content);
-    setReviewsEs((prev) => ({ ...prev, [reviewId]: translated }));
-    setTranslatingIds((prev) => ({ ...prev, [reviewId]: false }));
-  };
+  // Auto-traduce solo las visibles (5 primeras), con cache localStorage
+  useEffect(() => {
+    if (reviews.length === 0) {
+      setReviewsEs({});
+      return;
+    }
+    const visible = reviews.slice(0, visibleCount);
+    // Si ya están en cache, mostrar instantáneo
+    const cachedMap: Record<string, string> = {};
+    const toTranslate: { id: string; content: string }[] = [];
+    visible.forEach((r) => {
+      const cached = getCachedTranslation(r.content);
+      if (cached && cached !== r.content) {
+        cachedMap[r.id] = cached;
+      } else {
+        toTranslate.push({ id: r.id, content: r.content });
+      }
+    });
+    if (Object.keys(cachedMap).length > 0) {
+      setReviewsEs((prev) => ({ ...prev, ...cachedMap }));
+    }
+    if (toTranslate.length === 0) return;
+
+    let cancelled = false;
+    translateManyToSpanish(
+      toTranslate.map((t) => t.content),
+      toTranslate.length
+    ).then((translated) => {
+      if (cancelled) return;
+      const map: Record<string, string> = {};
+      toTranslate.forEach((t, i) => {
+        map[t.id] = translated[i];
+      });
+      setReviewsEs((prev) => ({ ...prev, ...map }));
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [reviews, visibleCount]);
 
   const year = movie.release_date ? movie.release_date.slice(0, 4) : "—";
+  const visibleReviews = reviews.slice(0, visibleCount);
+  const hasMore = reviews.length > visibleCount;
 
   return (
     <main className="flex-grow w-full flex flex-col">
-      {/* Hero - overview ya viene en es-ES desde TMDB, sin MyMemory */}
       <section className="relative w-full overflow-hidden flex items-center" style={{ minHeight: "560px" }}>
         <div
           className="absolute inset-0 bg-cover bg-center w-full h-full bg-surface-card"
@@ -57,7 +94,6 @@ const MovieSelected: FC<IMovieSelectedOwnProps> = () => {
           }
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-background/20" />
-
         <div className="relative z-10 w-full max-w-[1200px] mx-auto p-6 md:p-12 flex flex-col gap-3">
           <span className="px-3 py-1.5 rounded-full font-headline font-bold w-max border shadow-sm bg-surface-card text-white uppercase" style={{ fontSize: "11px", letterSpacing: "0.12em", borderColor: "rgba(255,255,255,0.10)" }}>
             ★ Estreno de la Semana
@@ -71,80 +107,61 @@ const MovieSelected: FC<IMovieSelectedOwnProps> = () => {
         </div>
       </section>
 
-      {/* Info strip */}
       <section className="w-full max-w-[1200px] mx-auto px-6 py-6 grid grid-cols-2 md:grid-cols-4 gap-4">
         <div className="bg-surface-card rounded-xl p-4 border border-border-subtle flex flex-col gap-1">
-          <span className="font-sans text-text-secondary uppercase" style={{ fontSize: "12px", lineHeight: "14px", letterSpacing: "0.08em", fontWeight: 600 }}>
-            Año
-          </span>
+          <span className="font-sans text-text-secondary uppercase" style={{ fontSize: "12px", lineHeight: "14px", letterSpacing: "0.08em", fontWeight: 600 }}>Año</span>
           <span className="font-headline text-xl text-white font-bold">{year}</span>
         </div>
         <div className="bg-surface-card rounded-xl p-4 border border-border-subtle flex flex-col gap-1">
-          <span className="font-sans text-text-secondary uppercase" style={{ fontSize: "12px", lineHeight: "14px", letterSpacing: "0.08em", fontWeight: 600 }}>
-            Rating
-          </span>
+          <span className="font-sans text-text-secondary uppercase" style={{ fontSize: "12px", lineHeight: "14px", letterSpacing: "0.08em", fontWeight: 600 }}>Rating</span>
           <span className="font-headline text-xl text-white font-bold flex items-center gap-2">
             <span className="text-tertiary">★</span>
             {movie.vote_average ? movie.vote_average : "—"}
           </span>
         </div>
         <div className="bg-surface-card rounded-xl p-4 border border-border-subtle flex flex-col gap-1">
-          <span className="font-sans text-text-secondary uppercase" style={{ fontSize: "12px", lineHeight: "14px", letterSpacing: "0.08em", fontWeight: 600 }}>
-            Reseñas
-          </span>
+          <span className="font-sans text-text-secondary uppercase" style={{ fontSize: "12px", lineHeight: "14px", letterSpacing: "0.08em", fontWeight: 600 }}>Reseñas</span>
           <span className="font-headline text-xl text-white font-bold">{reviews ? reviews.length : 0}</span>
         </div>
         <div className="bg-surface-card rounded-xl p-4 border border-border-subtle flex flex-col gap-1">
-          <span className="font-sans text-text-secondary uppercase" style={{ fontSize: "12px", lineHeight: "14px", letterSpacing: "0.08em", fontWeight: 600 }}>
-            Idioma
-          </span>
+          <span className="font-sans text-text-secondary uppercase" style={{ fontSize: "12px", lineHeight: "14px", letterSpacing: "0.08em", fontWeight: 600 }}>Idioma</span>
           <span className="font-headline text-xl text-white font-bold">{movie.original_language ? movie.original_language.toUpperCase() : "—"}</span>
         </div>
       </section>
 
-      {/* Reviews */}
       <section className="w-full max-w-[1200px] mx-auto px-6 pb-12 flex flex-col gap-4">
         <div className="flex justify-between items-end border-b border-border-subtle pb-2">
-          <h2 className="font-headline font-bold text-white tracking-tight" style={{ fontSize: "30px", lineHeight: "36px" }}>
-            Reseñas de Usuarios
-          </h2>
+          <h2 className="font-headline font-bold text-white tracking-tight" style={{ fontSize: "30px", lineHeight: "36px" }}>Reseñas de Usuarios</h2>
         </div>
 
         {reviews.length === 0 && (
-          <p className="font-sans text-text-secondary py-4" style={{ fontSize: "16px", lineHeight: "24px" }}>
-            Aún no hay reseñas para esta película.
-          </p>
+          <p className="font-sans text-text-secondary py-4" style={{ fontSize: "16px", lineHeight: "24px" }}>Aún no hay reseñas para esta película.</p>
         )}
 
         <div className="flex flex-col gap-4">
-          {reviews.length > 0 &&
-            reviews.map((e: any) => {
-              const isTranslated = !!reviewsEs[e.id];
-              const isTranslating = !!translatingIds[e.id];
-              return (
-                <div key={e.id} className="bg-surface-card rounded-xl p-5 border border-border-subtle flex flex-col gap-2">
-                  <div className="flex justify-between items-center gap-2">
-                    <h3 className="font-headline text-white font-bold" style={{ fontSize: "18px", lineHeight: "28px" }}>
-                      {e.author}
-                    </h3>
-                    <button
-                      type="button"
-                      onClick={() => handleTranslateReview(e.id, e.content)}
-                      disabled={isTranslating || isTranslated}
-                      className={`text-xs font-sans font-semibold px-3 py-1.5 rounded-full border transition-colors whitespace-nowrap ${
-                        isTranslated ? "bg-primary/20 border-primary/30 text-primary cursor-default" : "bg-transparent border-border-subtle text-text-secondary hover:border-primary hover:text-primary"
-                      }`}
-                    >
-                      {isTranslating ? "Traduciendo..." : isTranslated ? "✓ Traducido" : "Traducir al español"}
-                    </button>
-                  </div>
-                  <p className="font-sans text-text-secondary whitespace-pre-wrap break-words" style={{ fontSize: "14px", lineHeight: "20px" }}>
-                    {reviewsEs[e.id] || e.content}
-                  </p>
-                </div>
-              );
-            })}
+          {visibleReviews.map((e: any) => (
+            <div key={e.id} className="bg-surface-card rounded-xl p-5 border border-border-subtle flex flex-col gap-2">
+              <h3 className="font-headline text-white font-bold" style={{ fontSize: "18px", lineHeight: "28px" }}>{e.author}</h3>
+              <p className="font-sans text-text-secondary whitespace-pre-wrap break-words" style={{ fontSize: "14px", lineHeight: "20px" }}>
+                {reviewsEs[e.id] || e.content}
+              </p>
+              {!reviewsEs[e.id] && (
+                <span className="font-sans text-xs text-text-secondary/60" style={{ fontSize: "11px" }}>Traduciendo automáticamente...</span>
+              )}
+            </div>
+          ))}
         </div>
+
+        {hasMore && (
+          <button
+            type="button"
+            onClick={() => setVisibleCount((c) => c + VISIBLE_BATCH)}
+            className="self-center mt-2 px-6 py-2.5 rounded-full border border-border-subtle text-text-secondary hover:border-primary hover:text-primary font-sans font-semibold transition-colors"
+            style={{ fontSize: "14px" }}
+          >
+            Ver más reseñas ({reviews.length - visibleCount} restantes)
+          </button>
+        )}
       </section>
     </main>
   );
