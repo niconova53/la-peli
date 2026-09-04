@@ -62,7 +62,7 @@ const MovieSelected: FC<IMovieSelectedOwnProps> = () => {
   return (
     <main className="flex-grow w-full flex flex-col">
       {/* Hero */}
-      <section className="relative w-full overflow-hidden" style={{ minHeight: "560px" }}>
+      <section className="relative w-full overflow-hidden flex items-center" style={{ minHeight: "560px" }}>
         <div
           className="absolute inset-0 bg-cover bg-center w-full h-full bg-surface-card"
           style={
@@ -75,15 +75,15 @@ const MovieSelected: FC<IMovieSelectedOwnProps> = () => {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-background/20" />
 
-        <div className="absolute bottom-0 left-0 p-6 md:p-12 w-full md:w-2/3 flex flex-col gap-3">
-          <span className="px-3 py-1.5 rounded-full font-headline font-bold w-max border shadow-sm bg-surface-card text-white uppercase mt-6" style={{ fontSize: "11px", letterSpacing: "0.12em", borderColor: "rgba(255,255,255,0.10)" }}>
+        <div className="relative z-10 w-full max-w-[1200px] mx-auto p-6 md:p-12 flex flex-col gap-3">
+          <span className="px-3 py-1.5 rounded-full font-headline font-bold w-max border shadow-sm bg-surface-card text-white uppercase" style={{ fontSize: "11px", letterSpacing: "0.12em", borderColor: "rgba(255,255,255,0.10)" }}>
             ★ Estreno de la Semana
           </span>
           <h1 className="font-headline text-white font-bold" style={{ fontSize: "48px", lineHeight: "56px", letterSpacing: "-0.02em" }}>
             {movie.title || "Cargando..."}
           </h1>
           <p className="font-sans text-white max-w-2xl leading-relaxed drop-shadow" style={{ fontSize: "18px", lineHeight: "28px" }}>
-            {overviewEs || movie.overview || "Cargando..."}
+            {overviewEs || movie.overview || "Sinopsis no disponible por el momento — descubre esta película en detalle."}
           </p>
         </div>
       </section>

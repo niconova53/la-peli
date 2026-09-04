@@ -54,7 +54,7 @@ const CurrentMovies: FC<ICurrentMoviesOwnProps> = () => {
       )}
 
       {featured && (
-        <section className="relative w-full flex items-end" style={{ minHeight: "560px" }}>
+        <section className="relative w-full flex items-center" style={{ minHeight: "560px" }}>
           <div className="absolute inset-0 z-0">
             {featured.backdrop_path && (
               <img
@@ -66,18 +66,18 @@ const CurrentMovies: FC<ICurrentMoviesOwnProps> = () => {
             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
           </div>
 
-          <div className="relative z-10 w-full max-w-[1200px] mx-auto px-6 pb-10 pt-20">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-4 mt-6 border shadow-sm bg-surface-card" style={{ borderColor: "rgba(255,255,255,0.10)" }}>
+          <div className="relative z-10 w-full max-w-[1200px] mx-auto px-6 py-20">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-4 border shadow-sm bg-surface-card" style={{ borderColor: "rgba(255,255,255,0.10)" }}>
               <span className="text-tertiary text-xs leading-none">★</span>
               <span className="font-headline font-bold text-white uppercase" style={{ fontSize: "11px", letterSpacing: "0.12em" }}>
                 Estreno de la Semana
               </span>
             </div>
-            <h1 className="font-headline text-white mb-2 font-bold leading-tight drop-shadow-lg" style={{ fontSize: "40px", lineHeight: "44px", letterSpacing: "-0.02em" }}>
+            <h1 className="font-headline text-white mb-3 font-bold leading-tight drop-shadow-lg" style={{ fontSize: "40px", lineHeight: "44px", letterSpacing: "-0.02em" }}>
               Estreno de la Semana: {featured.title}
             </h1>
             <p className="font-sans text-white max-w-2xl leading-relaxed drop-shadow" style={{ fontSize: "18px", lineHeight: "28px" }}>
-              {featuredOverviewEs || featured.overview}
+              {featuredOverviewEs || featured.overview || "Descubre esta historia en la pantalla grande — no te pierdas el estreno más esperado de la semana."}
             </p>
             <div className="mt-6 flex gap-4">
               <button

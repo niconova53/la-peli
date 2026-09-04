@@ -7,8 +7,8 @@ const Footer: FC<IFooterOwnProps> = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-surface-card border-t border-border-subtle w-full flex flex-col md:flex-row justify-between items-center px-6 py-10 gap-6 mt-auto">
-      <div className="flex items-center gap-2">
+    <footer className="bg-surface-card border-t border-border-subtle w-full flex flex-col md:flex-row justify-between items-center md:items-end px-6 py-10 gap-6 mt-auto">
+      <div className="flex items-baseline gap-2">
         <span className="font-headline font-bold text-primary" style={{ fontSize: "20px", lineHeight: "28px" }}>
           La Peli
         </span>
