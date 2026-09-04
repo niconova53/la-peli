@@ -4,10 +4,13 @@ import { useParams } from "react-router-dom";
 import { IMovieSelectedOwnProps, MovieValues } from "./types";
 import { getMovieById, getMovieReviews } from "../../services/moviesAPI";
 import { API_IMG_URL } from "../../constants";
+import { translateToSpanish, translateManyToSpanish } from "../../services/translate";
 
 const MovieSelected: FC<IMovieSelectedOwnProps> = () => {
   const [movie, setMovie] = useState<MovieValues>({});
   const [reviews, setReviews] = useState<any[]>([]);
+  const [overviewEs, setOverviewEs] = useState<string | null>(null);
+  const [reviewsEs, setReviewsEs] = useState<Record<string, string>>({});
 
   const { id } = useParams<{ id: string }>();
 
@@ -31,12 +34,35 @@ const MovieSelected: FC<IMovieSelectedOwnProps> = () => {
     };
   }, [id]);
 
+  useEffect(() => {
+    if (movie.overview) {
+      translateToSpanish(movie.overview).then(setOverviewEs);
+    } else {
+      setOverviewEs(null);
+    }
+  }, [movie.overview]);
+
+  useEffect(() => {
+    if (reviews.length === 0) {
+      setReviewsEs({});
+      return;
+    }
+    const contents = reviews.map((r) => r.content as string);
+    translateManyToSpanish(contents).then((translated) => {
+      const map: Record<string, string> = {};
+      reviews.forEach((r, i) => {
+        map[r.id] = translated[i];
+      });
+      setReviewsEs(map);
+    });
+  }, [reviews]);
+
   const year = movie.release_date ? movie.release_date.slice(0, 4) : "—";
 
   return (
     <main className="flex-grow w-full flex flex-col">
       {/* Hero */}
-      <section className="relative w-full h-[70vh] overflow-hidden">
+      <section className="relative w-full overflow-hidden" style={{ minHeight: "560px" }}>
         <div
           className="absolute inset-0 bg-cover bg-center w-full h-full bg-surface-card"
           style={
@@ -56,8 +82,8 @@ const MovieSelected: FC<IMovieSelectedOwnProps> = () => {
           <h1 className="font-headline text-white font-bold" style={{ fontSize: "48px", lineHeight: "56px", letterSpacing: "-0.02em" }}>
             {movie.title || "Cargando..."}
           </h1>
-          <p className="font-sans text-base md:text-lg text-white line-clamp-3 md:line-clamp-4 max-w-2xl leading-relaxed drop-shadow">
-            {movie.overview || "Cargando..."}
+          <p className="font-sans text-white max-w-2xl leading-relaxed drop-shadow" style={{ fontSize: "18px", lineHeight: "28px" }}>
+            {overviewEs || movie.overview || "Cargando..."}
           </p>
         </div>
       </section>
@@ -104,13 +130,13 @@ const MovieSelected: FC<IMovieSelectedOwnProps> = () => {
       {/* Reviews */}
       <section className="w-full max-w-[1200px] mx-auto px-6 pb-12 flex flex-col gap-4">
         <div className="flex justify-between items-end border-b border-border-subtle pb-2">
-          <h2 className="font-headline text-2xl md:text-3xl font-bold text-white tracking-tight">
+          <h2 className="font-headline font-bold text-white tracking-tight" style={{ fontSize: "30px", lineHeight: "36px" }}>
             Reseñas de Usuarios
           </h2>
         </div>
 
         {reviews.length === 0 && (
-          <p className="font-sans text-base text-text-secondary py-4">
+          <p className="font-sans text-text-secondary py-4" style={{ fontSize: "16px", lineHeight: "24px" }}>
             Aún no hay reseñas para esta película.
           </p>
         )}
@@ -123,11 +149,11 @@ const MovieSelected: FC<IMovieSelectedOwnProps> = () => {
                   key={e.id}
                   className="bg-surface-card rounded-xl p-5 border border-border-subtle flex flex-col gap-2"
                 >
-                  <h3 className="font-headline text-lg font-bold text-white">
+                  <h3 className="font-headline text-white font-bold" style={{ fontSize: "18px", lineHeight: "28px" }}>
                     {e.author}
                   </h3>
-                  <p className="font-sans text-sm text-text-secondary whitespace-pre-wrap break-words">
-                    {e.content}
+                  <p className="font-sans text-text-secondary whitespace-pre-wrap break-words" style={{ fontSize: "14px", lineHeight: "20px" }}>
+                    {reviewsEs[e.id] || e.content}
                   </p>
                 </div>
               );

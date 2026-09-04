@@ -8,7 +8,7 @@ import axios from "./instance";
 export const getCurrentMovies = async (cancel: boolean = false) => {
   try {
     if (!cancel) {
-      const res = await axios.get("3/movie/now_playing");
+      const res = await axios.get("3/movie/now_playing?language=es-ES");
       return res.data.results;
     }
   } catch (err) {
@@ -19,7 +19,7 @@ export const getCurrentMovies = async (cancel: boolean = false) => {
 export const getComingSoon = async (cancel: boolean = false) => {
   try {
     if (!cancel) {
-      const res = await axios.get("3/movie/upcoming");
+      const res = await axios.get("3/movie/upcoming?language=es-ES");
       return res.data.results;
     }
   } catch (err) {
@@ -33,7 +33,7 @@ export const getMovieById = async (
 ) => {
   try {
     if (!cancel) {
-      const res = await axios.get(`3/movie/${movieId}`);
+      const res = await axios.get(`3/movie/${movieId}?language=es-ES`);
       return res.data;
     }
   } catch (err) {
@@ -47,7 +47,7 @@ export const getMovieReviews = async (
 ) => {
   try {
     if (!cancel) {
-      const res = await axios.get(`3/movie/${movieId}/reviews`);
+      const res = await axios.get(`3/movie/${movieId}/reviews?language=es-ES`);
       return res.data.results;
     }
   } catch (err) {
@@ -58,7 +58,7 @@ export const getMovieReviews = async (
 export const getGenres = async (cancel: boolean = false) => {
   try {
     if (!cancel) {
-      const res = await axios.get("3/genre/movie/list");
+      const res = await axios.get("3/genre/movie/list?language=es-ES");
       return res.data.genres;
     }
   } catch (err) {
@@ -69,7 +69,7 @@ export const getGenres = async (cancel: boolean = false) => {
 export const getByGenre = async (genreId: string, cancel: boolean = false) => {
   try {
     if (!cancel) {
-      const res = await axios.get(`3/discover/movie?with_genres=${genreId}`);
+      const res = await axios.get(`3/discover/movie?with_genres=${genreId}&language=es-ES`);
       return res.data;
     }
   } catch (err) {
@@ -79,7 +79,7 @@ export const getByGenre = async (genreId: string, cancel: boolean = false) => {
 
 export const search = async (query: string) => {
   try {
-    const res = await axios.get(`3/search/movie?query=${query}`);
+    const res = await axios.get(`3/search/movie?query=${query}&language=es-ES`);
     return res.data.results;
   } catch (err) {
     throw err;

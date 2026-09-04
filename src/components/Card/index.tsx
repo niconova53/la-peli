@@ -1,6 +1,7 @@
-import React, { FC } from "react";
+import React, { FC, useState, useEffect } from "react";
 import { IcardOwnProps } from "./types";
 import { API_IMG_URL } from "../../constants";
+import { translateToSpanish } from "../../services/translate";
 
 const Card: FC<IcardOwnProps> = ({
   poster,
@@ -12,6 +13,16 @@ const Card: FC<IcardOwnProps> = ({
   movieId,
   openMovie,
 }) => {
+  const [overviewEs, setOverviewEs] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (overview) {
+      translateToSpanish(overview).then(setOverviewEs);
+    } else {
+      setOverviewEs(null);
+    }
+  }, [overview]);
+
   return (
     <div
       onClick={() => openMovie(movieId)}
@@ -32,7 +43,7 @@ const Card: FC<IcardOwnProps> = ({
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
         ) : (
-          <div className="w-full h-full flex items-center justify-center text-text-secondary">
+          <div className="w-full h-full flex items-center justify-center text-text-secondary font-sans" style={{ fontSize: "14px" }}>
             Sin póster
           </div>
         )}
@@ -40,18 +51,18 @@ const Card: FC<IcardOwnProps> = ({
         <div className="absolute top-2 right-2 flex gap-1">
           {release ? (
             <span
-              className="px-2 py-1 rounded-md text-xs font-bold text-white border border-black/40"
-              style={{ backgroundColor: "rgba(11, 19, 38, 0.72)", backdropFilter: "blur(6px)" }}
+              className="px-2 py-1 rounded-md font-bold text-white border font-sans"
+              style={{ backgroundColor: "rgba(11, 19, 38, 0.72)", backdropFilter: "blur(6px)", fontSize: "12px", lineHeight: "14px", borderColor: "rgba(0,0,0,0.4)" }}
             >
               {release.slice(0, 4)}
             </span>
           ) : null}
           {rating ? (
             <span
-              className="px-2 py-1 rounded-md text-xs font-bold text-white flex items-center gap-1 border border-black/40"
-              style={{ backgroundColor: "rgba(11, 19, 38, 0.72)", backdropFilter: "blur(6px)" }}
+              className="px-2 py-1 rounded-md font-bold text-white flex items-center gap-1 border font-sans"
+              style={{ backgroundColor: "rgba(11, 19, 38, 0.72)", backdropFilter: "blur(6px)", fontSize: "12px", lineHeight: "14px", borderColor: "rgba(0,0,0,0.4)" }}
             >
-              <span className="text-tertiary text-[10px] leading-none">★</span>
+              <span className="text-tertiary leading-none" style={{ fontSize: "10px" }}>★</span>
               {rating.toFixed(1)}
             </span>
           ) : null}
@@ -70,7 +81,7 @@ const Card: FC<IcardOwnProps> = ({
           {title}
         </h3>
         <p className="font-sans text-text-secondary line-clamp-2 mt-auto" style={{ fontSize: "14px", lineHeight: "20px" }}>
-          {overview}
+          {overviewEs || overview}
         </p>
       </div>
     </div>
