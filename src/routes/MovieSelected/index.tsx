@@ -53,7 +53,7 @@ const MovieSelected: FC<IMovieSelectedOwnProps> = () => {
           <span className="px-3 py-1.5 rounded-full font-headline font-bold w-max border shadow-sm bg-surface-card text-white uppercase mt-6" style={{ fontSize: "11px", letterSpacing: "0.12em", borderColor: "rgba(255,255,255,0.10)" }}>
             ★ Estreno de la Semana
           </span>
-          <h1 className="font-headline text-4xl md:text-6xl text-white font-bold tracking-tight">
+          <h1 className="font-headline text-white font-bold" style={{ fontSize: "48px", lineHeight: "56px", letterSpacing: "-0.02em" }}>
             {movie.title || "Cargando..."}
           </h1>
           <p className="font-sans text-base md:text-lg text-white line-clamp-3 md:line-clamp-4 max-w-2xl leading-relaxed drop-shadow">
@@ -65,7 +65,7 @@ const MovieSelected: FC<IMovieSelectedOwnProps> = () => {
       {/* Info strip */}
       <section className="w-full max-w-[1200px] mx-auto px-6 py-6 grid grid-cols-2 md:grid-cols-4 gap-4">
         <div className="bg-surface-card rounded-xl p-4 border border-border-subtle flex flex-col gap-1">
-          <span className="font-sans text-xs text-text-secondary uppercase tracking-wider">
+          <span className="font-sans text-text-secondary uppercase" style={{ fontSize: "12px", lineHeight: "14px", letterSpacing: "0.08em", fontWeight: 600 }}>
             Año
           </span>
           <span className="font-headline text-xl text-white font-bold">
@@ -73,7 +73,7 @@ const MovieSelected: FC<IMovieSelectedOwnProps> = () => {
           </span>
         </div>
         <div className="bg-surface-card rounded-xl p-4 border border-border-subtle flex flex-col gap-1">
-          <span className="font-sans text-xs text-text-secondary uppercase tracking-wider">
+          <span className="font-sans text-text-secondary uppercase" style={{ fontSize: "12px", lineHeight: "14px", letterSpacing: "0.08em", fontWeight: 600 }}>
             Rating
           </span>
           <span className="font-headline text-xl text-white font-bold flex items-center gap-2">
@@ -82,7 +82,7 @@ const MovieSelected: FC<IMovieSelectedOwnProps> = () => {
           </span>
         </div>
         <div className="bg-surface-card rounded-xl p-4 border border-border-subtle flex flex-col gap-1">
-          <span className="font-sans text-xs text-text-secondary uppercase tracking-wider">
+          <span className="font-sans text-text-secondary uppercase" style={{ fontSize: "12px", lineHeight: "14px", letterSpacing: "0.08em", fontWeight: 600 }}>
             Reseñas
           </span>
           <span className="font-headline text-xl text-white font-bold">
@@ -90,7 +90,7 @@ const MovieSelected: FC<IMovieSelectedOwnProps> = () => {
           </span>
         </div>
         <div className="bg-surface-card rounded-xl p-4 border border-border-subtle flex flex-col gap-1">
-          <span className="font-sans text-xs text-text-secondary uppercase tracking-wider">
+          <span className="font-sans text-text-secondary uppercase" style={{ fontSize: "12px", lineHeight: "14px", letterSpacing: "0.08em", fontWeight: 600 }}>
             Idioma
           </span>
           <span className="font-headline text-xl text-white font-bold">

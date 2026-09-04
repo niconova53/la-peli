@@ -38,7 +38,7 @@ const CurrentMovies: FC<ICurrentMoviesOwnProps> = () => {
   return (
     <main className="flex-grow">
       {movies.length === 0 && (
-        <p className="text-center text-xl font-sans my-4 text-text-secondary break-words whitespace-pre-wrap">
+        <p className="text-center font-sans my-4 text-text-secondary break-words whitespace-pre-wrap" style={{ fontSize: "18px", lineHeight: "28px" }}>
           Cargando...
         </p>
       )}
@@ -85,7 +85,7 @@ const CurrentMovies: FC<ICurrentMoviesOwnProps> = () => {
 
       <section className="max-w-[1200px] mx-auto px-6 py-10">
         <div className="flex justify-between items-end mb-6">
-          <h2 className="font-headline text-3xl md:text-4xl text-white font-bold tracking-tight">
+          <h2 className="font-headline text-white font-bold tracking-tight" style={{ fontSize: "32px", lineHeight: "40px", letterSpacing: "-0.01em" }}>
             Cartelera Actual
           </h2>
         </div>

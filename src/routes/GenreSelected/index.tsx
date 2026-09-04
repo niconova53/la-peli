@@ -36,13 +36,13 @@ const GenreSelected: FC<IGenreSelectedOwnProps> = () => {
   return (
     <main className="flex-grow w-full max-w-[1200px] mx-auto px-6 py-10 flex flex-col gap-6">
       <div className="flex justify-between items-end border-b border-border-subtle pb-2">
-        <h1 className="font-headline text-3xl md:text-4xl font-extrabold text-white tracking-tight capitalize">
+        <h1 className="font-headline text-white font-bold tracking-tight capitalize" style={{ fontSize: "32px", lineHeight: "40px", letterSpacing: "-0.01em" }}>
           {name ? name.replace(/-/g, " ") : ""}
         </h1>
       </div>
 
       {movies.length === 0 && (
-        <p className="text-center text-xl font-sans my-4 text-text-secondary break-words whitespace-pre-wrap">
+        <p className="text-center font-sans my-4 text-text-secondary break-words whitespace-pre-wrap" style={{ fontSize: "18px", lineHeight: "28px" }}>
           Cargando...
         </p>
       )}

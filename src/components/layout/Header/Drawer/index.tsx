@@ -33,7 +33,7 @@ const DrawerResponsive: FC<IDrawerOwnProps> = ({
                 to={item.href}
                 replace
                 activeClassName="text-primary font-semibold"
-                className="text-on-surface-variant hover:text-text-primary hover:bg-surface-variant/50 truncate px-3 py-2 rounded-lg text-base font-medium flex transition-colors"
+                className="text-white hover:text-primary hover:bg-surface-variant/50 truncate px-3 py-2 rounded-lg flex transition-colors font-sans" style={{ fontSize: "16px", lineHeight: "24px", fontWeight: 500 }}
               >
                 {item.title}
               </NavLink>
@@ -44,7 +44,7 @@ const DrawerResponsive: FC<IDrawerOwnProps> = ({
             to="/buscar"
             replace
             activeClassName="text-primary font-semibold"
-            className="text-on-surface-variant hover:text-text-primary hover:bg-surface-variant/50 truncate px-3 py-2 rounded-lg text-base font-medium flex transition-colors"
+            className="text-white hover:text-primary hover:bg-surface-variant/50 truncate px-3 py-2 rounded-lg flex transition-colors font-sans" style={{ fontSize: "16px", lineHeight: "24px", fontWeight: 500 }}
           >
             Buscar
           </NavLink>

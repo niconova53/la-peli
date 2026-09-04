@@ -3,7 +3,7 @@ import React, { FC, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { IGenresOwnProps, OpenGenre } from "./types";
 import { getGenres } from "../../services/moviesAPI";
-import { MovieIcon } from "../../assets/icons";
+import { genreIcon } from "../../constants";
 
 const Genres: FC<IGenresOwnProps> = () => {
   const [genres, setGenres] = useState([]);
@@ -35,17 +35,16 @@ const Genres: FC<IGenresOwnProps> = () => {
   return (
     <main className="flex-grow w-full max-w-[1200px] mx-auto px-6 py-10 flex flex-col gap-8">
       <section className="flex flex-col items-center justify-center text-center py-6">
-        <h1 className="font-headline text-3xl md:text-4xl text-white mb-2 font-bold tracking-tight">
+        <h1 className="font-headline text-white font-bold tracking-tight" style={{ fontSize: "48px", lineHeight: "56px", letterSpacing: "-0.02em" }}>
           Explora por Género
         </h1>
-        <p className="font-sans text-base text-text-secondary max-w-2xl">
-          Descubre tu próxima película favorita navegando por nuestras
-          categorías cuidadosamente seleccionadas.
+        <p className="font-sans text-text-secondary max-w-2xl" style={{ fontSize: "18px", lineHeight: "28px" }}>
+          Descubre tu próxima película favorita navegando por nuestras categorías cuidadosamente seleccionadas.
         </p>
       </section>
 
       {genres.length === 0 && (
-        <p className="text-center text-xl font-sans my-4 text-text-secondary break-words whitespace-pre-wrap">
+        <p className="text-center font-sans my-4 text-text-secondary break-words whitespace-pre-wrap" style={{ fontSize: "20px" }}>
           Cargando...
         </p>
       )}
@@ -59,13 +58,14 @@ const Genres: FC<IGenresOwnProps> = () => {
                 onClick={() => {
                   openGenre(e.id, e.name);
                 }}
-                className="group flex flex-col items-center justify-center bg-surface-card p-8 rounded-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer relative overflow-hidden border border-border-subtle hover:border-primary"
+                className="genre-card group flex flex-col items-center justify-center bg-surface-card p-8 rounded-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer relative overflow-hidden border border-border-subtle hover:border-primary h-[200px]"
               >
-                <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/[0.05] transition-colors duration-300" />
-                <div className="w-16 h-16 rounded-full bg-surface flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 group-hover:bg-primary text-primary group-hover:text-white border border-border-subtle">
-                  <MovieIcon className="w-8 h-8 fill-current" />
+                <div className="genre-icon-container w-16 h-16 rounded-full flex items-center justify-center mb-4 transition-all duration-300 border bg-background group-hover:bg-primary group-hover:scale-110" style={{ borderColor: "#334155" }}>
+                  <span className="material-symbols-outlined text-primary group-hover:text-white transition-colors duration-300" style={{ fontSize: "32px" }}>
+                    {genreIcon(e.id)}
+                  </span>
                 </div>
-                <h3 className="font-headline text-xl text-white group-hover:text-primary transition-colors duration-300 text-center font-semibold">
+                <h3 className="genre-title font-headline text-white group-hover:text-primary transition-colors duration-300 text-center font-bold" style={{ fontSize: "20px", lineHeight: "28px" }}>
                   {e.name}
                 </h3>
               </div>

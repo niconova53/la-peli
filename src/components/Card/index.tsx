@@ -61,15 +61,15 @@ const Card: FC<IcardOwnProps> = ({
       <div className="p-4 flex flex-col flex-grow">
         {genre ? (
           <div className="mb-1">
-            <span className="text-xs bg-border-subtle text-text-secondary px-2 py-0.5 rounded-sm uppercase tracking-wider">
+            <span className="bg-border-subtle text-text-secondary px-2 py-0.5 rounded-sm uppercase font-sans" style={{ fontSize: "12px", lineHeight: "14px", letterSpacing: "0.08em", fontWeight: 600 }}>
               {genre}
             </span>
           </div>
         ) : null}
-        <h3 className="font-headline text-xl text-white mb-2 line-clamp-1 group-hover:text-primary transition-colors leading-8 font-semibold">
+        <h3 className="font-headline text-white mb-2 line-clamp-1 group-hover:text-primary transition-colors font-bold" style={{ fontSize: "18px", lineHeight: "24px" }}>
           {title}
         </h3>
-        <p className="font-sans text-sm text-text-secondary line-clamp-2 mt-auto">
+        <p className="font-sans text-text-secondary line-clamp-2 mt-auto" style={{ fontSize: "14px", lineHeight: "20px" }}>
           {overview}
         </p>
       </div>

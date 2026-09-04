@@ -36,16 +36,16 @@ const ComingSoon: FC<IComingSoonOwnProps> = () => {
   return (
     <main className="flex-grow max-w-[1200px] mx-auto px-6 py-10 w-full">
       <section className="flex flex-col items-center justify-center text-center py-6">
-        <h1 className="font-headline text-3xl md:text-4xl text-white mb-2 font-bold tracking-tight">
+        <h1 className="font-headline text-white font-bold tracking-tight" style={{ fontSize: "32px", lineHeight: "40px", letterSpacing: "-0.01em" }}>
           Próximamente
         </h1>
-        <p className="font-sans text-base text-text-secondary max-w-2xl">
+        <p className="font-sans text-text-secondary max-w-2xl" style={{ fontSize: "18px", lineHeight: "28px" }}>
           Conoce los estrenos que están por llegar.
         </p>
       </section>
 
       {movies.length === 0 && (
-        <p className="text-center text-xl font-sans my-4 text-text-secondary break-words whitespace-pre-wrap">
+        <p className="text-center font-sans my-4 text-text-secondary break-words whitespace-pre-wrap" style={{ fontSize: "18px", lineHeight: "28px" }}>
           Cargando...
         </p>
       )}

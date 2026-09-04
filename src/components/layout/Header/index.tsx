@@ -7,14 +7,12 @@ import { useDropBtn } from "../../../hooks";
 
 const Logo: FC = () => (
   <span className="flex items-center gap-2">
-    <svg viewBox="0 0 48 48" className="w-8 h-8 rounded-md" aria-hidden="true">
-      <rect width="48" height="48" rx="10" fill="#a078ff" />
-      <circle cx="24" cy="24" r="7" fill="none" stroke="#0f172a" strokeWidth="3" />
-      <circle cx="24" cy="24" r="2.5" fill="#0f172a" />
-    </svg>
-    <span className="font-headline text-2xl font-bold text-primary tracking-tight">
-      La Peli
+    <span className="w-8 h-8 rounded-md bg-primary flex items-center justify-center" aria-hidden="true">
+      <span className="material-symbols-outlined text-white text-[20px] leading-none" style={{ fontVariationSettings: "'FILL' 1" }}>
+        theaters
+      </span>
     </span>
+    <span className="font-headline font-bold text-white tracking-tight" style={{ fontSize: "24px", lineHeight: "32px" }}>La Peli</span>
   </span>
 );
 

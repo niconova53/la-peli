@@ -9,15 +9,15 @@ const Footer: FC<IFooterOwnProps> = () => {
   return (
     <footer className="bg-surface-card border-t border-border-subtle w-full flex flex-col md:flex-row justify-between items-center px-6 py-10 gap-6 mt-auto">
       <div className="flex items-center gap-2">
-        <span className="font-headline text-lg font-bold text-primary">
+        <span className="font-headline font-bold text-primary" style={{ fontSize: "20px", lineHeight: "28px" }}>
           La Peli
         </span>
-        <span className="text-text-secondary font-sans text-sm">
+        <span className="text-text-secondary font-sans" style={{ fontSize: "14px", lineHeight: "20px" }}>
           © {year}. Descubre el cine.
         </span>
       </div>
 
-      <nav className="flex flex-wrap justify-center gap-4 md:gap-6 font-sans text-sm">
+      <nav className="flex flex-wrap justify-center gap-4 md:gap-6 font-sans" style={{ fontSize: "14px", lineHeight: "20px" }}>
         {headerItems.map((item) => (
           <NavLink
             key={`footer-nav-${item.href}`}

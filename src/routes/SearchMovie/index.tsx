@@ -19,10 +19,10 @@ const SearchMovie: FC<ISearchMovieOwnProps> = () => {
   return (
     <main className="flex-grow w-full max-w-[1200px] mx-auto px-6 py-10 flex flex-col gap-6">
       <section className="flex flex-col items-center justify-center text-center py-6">
-        <h1 className="font-headline text-3xl md:text-4xl text-white mb-2 font-bold tracking-tight">
+        <h1 className="font-headline text-white font-bold tracking-tight" style={{ fontSize: "32px", lineHeight: "40px", letterSpacing: "-0.01em" }}>
           Encuentra tu próxima película
         </h1>
-        <p className="font-sans text-base text-text-secondary max-w-2xl">
+        <p className="font-sans text-text-secondary max-w-2xl" style={{ fontSize: "18px", lineHeight: "28px" }}>
           Busca por título y descubre tu próxima historia favorita.
         </p>
       </section>
@@ -34,7 +34,7 @@ const SearchMovie: FC<ISearchMovieOwnProps> = () => {
       />
 
       {movieSearch && (
-        <p className="text-center text-lg font-sans my-2 text-text-secondary break-words whitespace-pre-wrap">
+        <p className="text-center font-sans my-2 text-text-secondary break-words whitespace-pre-wrap" style={{ fontSize: "18px", lineHeight: "28px" }}>
           Resultados de:
           <span className="text-primary ml-2 italic font-medium">
             {movieSearch}
@@ -43,7 +43,7 @@ const SearchMovie: FC<ISearchMovieOwnProps> = () => {
       )}
 
       {errorSearch && (
-        <p className="text-center text-xl font-sans my-4 text-text-secondary break-words whitespace-pre-wrap">
+        <p className="text-center font-sans my-4 text-text-secondary break-words whitespace-pre-wrap" style={{ fontSize: "18px", lineHeight: "28px" }}>
           No hay resultados
         </p>
       )}
