@@ -1,7 +1,6 @@
-import React, { FC, useState, useEffect } from "react";
+import React, { FC } from "react";
 import { IcardOwnProps } from "./types";
 import { API_IMG_URL } from "../../constants";
-import { translateToSpanish } from "../../services/translate";
 
 const Card: FC<IcardOwnProps> = ({
   poster,
@@ -13,16 +12,6 @@ const Card: FC<IcardOwnProps> = ({
   movieId,
   openMovie,
 }) => {
-  const [overviewEs, setOverviewEs] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (overview) {
-      translateToSpanish(overview).then(setOverviewEs);
-    } else {
-      setOverviewEs(null);
-    }
-  }, [overview]);
-
   return (
     <div
       onClick={() => openMovie(movieId)}
@@ -81,7 +70,7 @@ const Card: FC<IcardOwnProps> = ({
           {title}
         </h3>
         <p className="font-sans text-text-secondary line-clamp-2 mt-auto" style={{ fontSize: "14px", lineHeight: "20px" }}>
-          {overviewEs || overview}
+          {overview}
         </p>
       </div>
     </div>

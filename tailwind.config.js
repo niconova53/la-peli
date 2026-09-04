@@ -5,7 +5,7 @@ module.exports = {
     extend: {
       fontFamily: {
         headline: ["Plus Jakarta Sans", "system-ui", "sans-serif"],
-        sans: ["Source Sans 3", "system-ui", "sans-serif"],
+        sans: ["Plus Jakarta Sans", "system-ui", "sans-serif"],
         mono: [
           "Source Code Pro",
           "ui-monospace",
