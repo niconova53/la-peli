@@ -14,7 +14,9 @@ try {
     const obj = JSON.parse(raw) as Record<string, string>;
     Object.entries(obj).forEach(([k, v]) => cache.set(k, v));
   }
-} catch {}
+} catch (_e) {
+  // localStorage no disponible o JSON corrupto — cache en memoria sigue funcionando
+}
 
 function persist() {
   try {
@@ -23,7 +25,9 @@ function persist() {
       obj[k] = v;
     });
     localStorage.setItem(CACHE_KEY, JSON.stringify(obj));
-  } catch {}
+  } catch (_e) {
+    // quota excedida o storage bloqueado — se ignora
+  }
 }
 
 export async function translateToSpanish(text: string): Promise<string> {
