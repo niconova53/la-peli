@@ -44,7 +44,7 @@ const CurrentMovies: FC<ICurrentMoviesOwnProps> = () => {
       )}
 
       {featured && (
-        <section className="relative w-full h-[500px] flex items-end">
+        <section className="relative w-full h-[500px] flex items-end mt-6">
           <div className="absolute inset-0 z-0">
             {featured.backdrop_path && (
               <img
@@ -58,14 +58,15 @@ const CurrentMovies: FC<ICurrentMoviesOwnProps> = () => {
 
           <div className="relative z-10 w-full max-w-[1200px] mx-auto px-6 pb-10">
             <div
-              className="inline-flex items-center gap-2 px-3 py-1 rounded-full mb-4 border"
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-4 border shadow-sm"
               style={{
-                backgroundColor: "rgba(139, 92, 246, 0.20)",
-                borderColor: "rgba(139, 92, 246, 0.30)",
+                backgroundColor: "rgba(139, 92, 246, 0.30)",
+                borderColor: "rgba(139, 92, 246, 0.45)",
+                backdropFilter: "blur(8px)",
               }}
             >
-              <span className="text-primary text-sm leading-none">★</span>
-              <span className="font-sans text-xs font-semibold text-primary uppercase tracking-wider">
+              <span className="text-primary-fixed text-sm leading-none">★</span>
+              <span className="font-sans text-xs font-bold text-primary-fixed uppercase tracking-wider">
                 Estreno de la Semana
               </span>
             </div>
