@@ -34,10 +34,13 @@ const Card: FC<IcardOwnProps> = ({ poster, title, overview, release, rating, gen
           <img
             src={`${API_IMG_URL}w500${poster}`}
             alt={`Póster de ${title}`}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            className="w-full h-full object-cover transform transition duration-700 ease-out group-hover:scale-[1.04]"
+            style={{ transitionProperty: "background-color, border-color, color, fill, stroke, opacity, box-shadow, transform" }}
           />
         ) : (
-          <FallbackPoster title={title} />
+          <div className="w-full h-full transform transition duration-700 ease-out group-hover:scale-[1.04]" style={{ transitionProperty: "background-color, border-color, color, fill, stroke, opacity, box-shadow, transform" }}>
+            <FallbackPoster title={title} />
+          </div>
         )}
 
         <div className="absolute top-2 left-2 right-2 flex justify-end gap-1.5 flex-wrap pointer-events-none">
