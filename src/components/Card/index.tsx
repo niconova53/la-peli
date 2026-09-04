@@ -77,7 +77,7 @@ const Card: FC<IcardOwnProps> = ({ poster, title, overview, release, rating, gen
         <h3 className="font-headline text-white mb-2 line-clamp-1 group-hover:text-primary transition-colors font-bold" style={{ fontSize: "18px", lineHeight: "24px" }}>
           {title}
         </h3>
-        <p className="font-sans text-text-secondary line-clamp-2 mt-auto" style={{ fontSize: "14px", lineHeight: "20px" }}>
+        <p className="font-sans text-text-secondary line-clamp-2" style={{ fontSize: "14px", lineHeight: "20px" }}>
           {overview || "Sin descripción disponible."}
         </p>
       </div>
