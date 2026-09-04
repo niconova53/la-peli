@@ -51,7 +51,7 @@ const MovieSelected: FC<IMovieSelectedOwnProps> = () => {
 
         <div className="absolute bottom-0 left-0 p-6 md:p-12 w-full md:w-2/3 flex flex-col gap-3">
           <span
-            className="px-3 py-1.5 rounded-full text-sm font-headline font-semibold w-max border shadow-sm text-primary-fixed"
+            className="px-3 py-1.5 rounded-full text-sm font-headline font-semibold w-max border shadow-sm text-primary-fixed mt-6"
             style={{
               backgroundColor: "rgba(139, 92, 246, 0.30)",
               borderColor: "rgba(139, 92, 246, 0.45)",
@@ -63,7 +63,7 @@ const MovieSelected: FC<IMovieSelectedOwnProps> = () => {
           <h1 className="font-headline text-4xl md:text-6xl text-white font-bold tracking-tight">
             {movie.title || "Cargando..."}
           </h1>
-          <p className="font-sans text-base md:text-lg text-slate-300 line-clamp-3 md:line-clamp-4 max-w-2xl">
+          <p className="font-sans text-base md:text-lg text-white line-clamp-3 md:line-clamp-4 max-w-2xl leading-relaxed drop-shadow">
             {movie.overview || "Cargando..."}
           </p>
         </div>
