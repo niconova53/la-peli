@@ -104,11 +104,24 @@ export const translateToSpanish = async (text: string): Promise<string> => {
 };
 
 export const translateManyToSpanish = async (texts: string[]): Promise<string[]> => {
-  const results: string[] = [];
-  for (const t of texts) {
-    // secuencial con queue ya throttled, no Promise.all
-    // eslint-disable-next-line no-await-in-loop
-    results.push(await translateToSpanish(t));
+  // Reviews: traducir siempre (son en EN), con concurrencia limitada para no 429
+  // Sin looksSpanish check — reviews de TMDB siempre vienen en inglés
+  const results: string[] = new Array(texts.length);
+  const CONCURRENCY = 3;
+  let idx = 0;
+
+  async function worker() {
+    while (idx < texts.length) {
+      const i = idx++;
+      // eslint-disable-next-line no-await-in-loop
+      results[i] = await translateToSpanish(texts[i]);
+      if (idx < texts.length) {
+        // eslint-disable-next-line no-await-in-loop
+        await new Promise((r) => setTimeout(r, 350));
+      }
+    }
   }
+
+  await Promise.all(Array.from({ length: Math.min(CONCURRENCY, texts.length) }, () => worker()));
   return results;
 };
