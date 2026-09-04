@@ -29,7 +29,10 @@ const Body: FC<IBodyOwnProps> = ({ children }) => {
   };
 
   return (
-    <div className="relative overflow-x-hidden w-full min-h-screen bg-background pt-[72px] flex flex-col">
+    <div
+      className="relative overflow-x-hidden w-full min-h-screen bg-background flex flex-col"
+      style={{ paddingTop: "72px" }}
+    >
       <div className="flex-grow flex flex-col">{children}</div>
 
       <button

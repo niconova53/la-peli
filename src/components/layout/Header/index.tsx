@@ -24,8 +24,7 @@ const Header: FC<IHeaderOwnProps> = () => {
 
   return (
     <header
-      className="bg-surface-card/80 backdrop-blur-xl fixed top-0 w-full z-50 flex justify-between items-center px-6 py-4 max-w-full mx-auto"
-      style={{ borderBottom: "1px solid #334155" }}
+      className="fixed top-0 w-full z-50 flex justify-between items-center px-6 py-4 max-w-full mx-auto bg-background border-b border-border-subtle"
     >
       <button
         type="button"

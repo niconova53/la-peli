@@ -39,12 +39,18 @@ const Card: FC<IcardOwnProps> = ({
 
         <div className="absolute top-2 right-2 flex gap-1">
           {release ? (
-            <span className="bg-surface-card/80 backdrop-blur-md px-2 py-1 rounded-md text-xs font-bold text-white border border-border-subtle">
+            <span
+              className="px-2 py-1 rounded-md text-xs font-bold text-white border border-black/40"
+              style={{ backgroundColor: "rgba(11, 19, 38, 0.72)", backdropFilter: "blur(6px)" }}
+            >
               {release.slice(0, 4)}
             </span>
           ) : null}
           {rating ? (
-            <span className="bg-surface-card/80 backdrop-blur-md px-2 py-1 rounded-md text-xs font-bold text-white flex items-center gap-1 border border-border-subtle">
+            <span
+              className="px-2 py-1 rounded-md text-xs font-bold text-white flex items-center gap-1 border border-black/40"
+              style={{ backgroundColor: "rgba(11, 19, 38, 0.72)", backdropFilter: "blur(6px)" }}
+            >
               <span className="text-tertiary text-[10px] leading-none">★</span>
               {rating.toFixed(1)}
             </span>

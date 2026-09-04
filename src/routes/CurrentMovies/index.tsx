@@ -57,7 +57,13 @@ const CurrentMovies: FC<ICurrentMoviesOwnProps> = () => {
           </div>
 
           <div className="relative z-10 w-full max-w-[1200px] mx-auto px-6 pb-10">
-            <div className="inline-flex items-center gap-2 bg-primary/20 backdrop-blur-md px-3 py-1 rounded-full border border-primary/30 mb-4">
+            <div
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-full mb-4 border"
+              style={{
+                backgroundColor: "rgba(139, 92, 246, 0.20)",
+                borderColor: "rgba(139, 92, 246, 0.30)",
+              }}
+            >
               <span className="text-primary text-sm leading-none">★</span>
               <span className="font-sans text-xs font-semibold text-primary uppercase tracking-wider">
                 Estreno de la Semana
@@ -73,7 +79,7 @@ const CurrentMovies: FC<ICurrentMoviesOwnProps> = () => {
               <button
                 type="button"
                 onClick={() => openMovie(featured.id)}
-                className="bg-primary hover:bg-primary-hover text-white px-6 py-3 rounded-xl font-bold flex items-center gap-2 transition-colors"
+                className="bg-primary hover:bg-primary-hover text-white px-6 py-3 rounded-xl font-headline font-semibold flex items-center gap-2 transition-colors"
               >
                 <span className="text-lg leading-none">▶</span>
                 Ver Detalles
