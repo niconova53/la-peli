@@ -2,23 +2,28 @@ import React, { FC } from "react";
 import { IcardOwnProps } from "./types";
 import { API_IMG_URL } from "../../constants";
 
-const Card: FC<IcardOwnProps> = ({
-  poster,
-  title,
-  overview,
-  release,
-  rating,
-  genre,
-  movieId,
-  openMovie,
-}) => {
+const FallbackPoster: FC<{ title: string }> = ({ title }) => (
+  <div className="w-full h-full flex flex-col items-center justify-center gap-3 bg-gradient-to-br from-surface-card via-surface-container-high to-background p-6 text-center">
+    <div className="w-14 h-14 rounded-xl bg-primary/15 border border-primary/20 flex items-center justify-center">
+      <span className="material-symbols-outlined text-primary" style={{ fontSize: "32px" }}>
+        movie
+      </span>
+    </div>
+    <span className="font-headline font-bold text-white line-clamp-2 px-2" style={{ fontSize: "14px", lineHeight: "18px" }}>
+      {title}
+    </span>
+    <span className="font-sans text-text-secondary" style={{ fontSize: "11px", letterSpacing: "0.06em" }}>
+      Sin póster disponible
+    </span>
+  </div>
+);
+
+const Card: FC<IcardOwnProps> = ({ poster, title, overview, release, rating, genre, movieId, openMovie }) => {
   return (
     <div
       onClick={() => openMovie(movieId)}
       onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          openMovie(movieId);
-        }
+        if (e.key === "Enter" || e.key === " ") openMovie(movieId);
       }}
       role="button"
       tabIndex={0}
@@ -32,15 +37,13 @@ const Card: FC<IcardOwnProps> = ({
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
         ) : (
-          <div className="w-full h-full flex items-center justify-center text-text-secondary font-sans" style={{ fontSize: "14px" }}>
-            Sin póster
-          </div>
+          <FallbackPoster title={title} />
         )}
 
-        <div className="absolute top-2 right-2 flex gap-1">
+        <div className="absolute top-2 left-2 right-2 flex justify-end gap-1.5 flex-wrap pointer-events-none">
           {release ? (
             <span
-              className="px-2 py-1 rounded-md font-bold text-white border font-sans"
+              className="px-2 py-1 rounded-md font-bold text-white border font-sans shrink-0"
               style={{ backgroundColor: "rgba(11, 19, 38, 0.72)", backdropFilter: "blur(6px)", fontSize: "12px", lineHeight: "14px", borderColor: "rgba(0,0,0,0.4)" }}
             >
               {release.slice(0, 4)}
@@ -48,10 +51,12 @@ const Card: FC<IcardOwnProps> = ({
           ) : null}
           {rating ? (
             <span
-              className="px-2 py-1 rounded-md font-bold text-white flex items-center gap-1 border font-sans"
+              className="px-2 py-1 rounded-md font-bold text-white flex items-center gap-1 border font-sans shrink-0"
               style={{ backgroundColor: "rgba(11, 19, 38, 0.72)", backdropFilter: "blur(6px)", fontSize: "12px", lineHeight: "14px", borderColor: "rgba(0,0,0,0.4)" }}
             >
-              <span className="text-tertiary leading-none" style={{ fontSize: "10px" }}>★</span>
+              <span className="text-tertiary leading-none" style={{ fontSize: "10px" }}>
+                ★
+              </span>
               {rating.toFixed(1)}
             </span>
           ) : null}
@@ -61,7 +66,10 @@ const Card: FC<IcardOwnProps> = ({
       <div className="p-4 flex flex-col flex-grow">
         {genre ? (
           <div className="mb-1">
-            <span className="bg-border-subtle text-text-secondary px-2 py-0.5 rounded-sm uppercase font-sans" style={{ fontSize: "12px", lineHeight: "14px", letterSpacing: "0.08em", fontWeight: 600 }}>
+            <span
+              className="bg-border-subtle text-text-secondary px-2 py-0.5 rounded-sm uppercase font-sans"
+              style={{ fontSize: "12px", lineHeight: "14px", letterSpacing: "0.08em", fontWeight: 600 }}
+            >
               {genre}
             </span>
           </div>
@@ -70,7 +78,7 @@ const Card: FC<IcardOwnProps> = ({
           {title}
         </h3>
         <p className="font-sans text-text-secondary line-clamp-2 mt-auto" style={{ fontSize: "14px", lineHeight: "20px" }}>
-          {overview}
+          {overview || "Sin descripción disponible."}
         </p>
       </div>
     </div>
