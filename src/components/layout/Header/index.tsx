@@ -42,7 +42,7 @@ const Header: FC<IHeaderOwnProps> = () => {
               to={item.href}
               replace
               activeClassName="text-primary font-bold border-b-2 border-primary"
-              className="text-slate-200 hover:text-primary transition-colors duration-300 hover:bg-surface-variant/50 px-2 py-1 rounded-sm border-b-2 border-transparent"
+              className="text-white hover:text-primary transition-colors duration-300 hover:bg-surface-variant/50 px-2 py-1 rounded-sm border-b-2 border-transparent"
             >
               {item.title}
             </NavLink>
@@ -54,7 +54,7 @@ const Header: FC<IHeaderOwnProps> = () => {
         <button
           type="button"
           aria-label="Buscar"
-          className="hidden md:flex p-2 text-slate-200 hover:text-primary transition-colors rounded-full hover:bg-surface-variant/50 focus:outline-none"
+          className="hidden md:flex p-2 text-white hover:text-primary transition-colors rounded-full hover:bg-surface-variant/50 focus:outline-none"
           onClick={() => history.push("/buscar")}
         >
           <svg
@@ -75,7 +75,7 @@ const Header: FC<IHeaderOwnProps> = () => {
         <button
           type="button"
           aria-label="Menú"
-          className="md:hidden p-2 text-slate-200 hover:text-primary transition-colors rounded-full hover:bg-surface-variant/50 focus:outline-none"
+          className="md:hidden p-2 text-white hover:text-primary transition-colors rounded-full hover:bg-surface-variant/50 focus:outline-none"
           onClick={() => setShow(!show)}
         >
           <svg
