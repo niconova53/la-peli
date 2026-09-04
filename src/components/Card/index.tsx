@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { IcardOwnProps } from "./types";
 import { API_IMG_URL } from "../../constants";
 
@@ -19,12 +19,16 @@ const FallbackPoster: FC<{ title: string }> = ({ title }) => (
 );
 
 const Card: FC<IcardOwnProps> = ({ poster, title, overview, release, rating, genre, movieId, openMovie }) => {
+  const [hovered, setHovered] = useState(false);
+
   return (
     <div
       onClick={() => openMovie(movieId)}
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") openMovie(movieId);
       }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
       role="button"
       tabIndex={0}
       className="group relative bg-surface-card rounded-xl border border-border-subtle overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:border-primary/50 hover:shadow-card-hover flex flex-col h-full cursor-pointer"
@@ -34,8 +38,13 @@ const Card: FC<IcardOwnProps> = ({ poster, title, overview, release, rating, gen
           <img
             src={`${API_IMG_URL}w500${poster}`}
             alt={`Póster de ${title}`}
-            className="w-full h-full object-cover transform transition duration-700 ease-out group-hover:scale-[1.04]"
-            style={{ transitionProperty: "background-color, border-color, color, fill, stroke, opacity, box-shadow, transform" }}
+            className="w-full h-full object-cover transform"
+            style={{
+              transitionProperty: "background-color, border-color, color, fill, stroke, opacity, box-shadow, transform",
+              transitionDuration: "700ms",
+              transitionTimingFunction: "cubic-bezier(0, 0, 0.2, 1)",
+              transform: hovered ? "scale(1.07)" : "scale(1)",
+            }}
           />
         ) : (
           <FallbackPoster title={title} />
