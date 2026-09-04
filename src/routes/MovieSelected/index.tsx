@@ -95,9 +95,6 @@ const MovieSelected: FC<IMovieSelectedOwnProps> = () => {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-background/20" />
         <div className="relative z-10 w-full max-w-[1200px] mx-auto p-6 md:p-12 flex flex-col gap-3">
-          <span className="px-3 py-1.5 rounded-full font-headline font-bold w-max border shadow-sm bg-surface-card text-white uppercase" style={{ fontSize: "11px", letterSpacing: "0.12em", borderColor: "rgba(255,255,255,0.10)" }}>
-            ★ Estreno de la Semana
-          </span>
           <h1 className="font-headline text-white font-bold" style={{ fontSize: "48px", lineHeight: "56px", letterSpacing: "-0.02em" }}>
             {movie.title || "Cargando..."}
           </h1>
